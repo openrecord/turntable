@@ -1,0 +1,20 @@
+# docs.serverless.com
+
+service: openrecord-turntable
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+
+functions:
+  proxy:
+    handler: src/app/functions.proxy
+    events:
+      - http:
+          path: '{proxy+}'
+          method: ANY
+          cors: true
+
+plugins:
+  - serverless-offline

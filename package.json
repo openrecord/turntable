@@ -20,11 +20,15 @@
     "husky": "^0.14.3",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1",
-    "serverless": "^1.27.2"
+    "serverless": "^1.27.2",
+    "serverless-offline": "^3.21.1"
   },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "dependencies": {
+    "fastify": "^1.4.0"
   }
 }
