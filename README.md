@@ -11,8 +11,8 @@ The service is currently hosted on AWS [Lambda](https://aws.amazon.com/lambda) v
 To set up your local development, make sure you have Node.js version 8 or above installed.
 
 ```bash
-npm install             # Install packages
-# TODO
+npm install     # Install packages
+npm start       # Run serverless offline
 ```
 
 You may also interact with the codebase using `serverless`:
@@ -40,3 +40,4 @@ TODO
 * [ ] Setup production env
 * [ ] Configure DNS
 * [ ] Finish README
+* [ ] Create limited IAM role(s) for other users to deploy and invoke
