@@ -1,0 +1,19 @@
+{
+  "name": "turntable",
+  "version": "0.0.1",
+  "description": "Backend for the openrecord platform.",
+  "main": "TODO",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openrecord/turntable.git"
+  },
+  "author": "chasdeveas@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/openrecord/turntable/issues"
+  },
+  "homepage": "https://github.com/openrecord/turntable#readme"
+}
