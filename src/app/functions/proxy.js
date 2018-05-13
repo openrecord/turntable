@@ -1,5 +1,5 @@
-const RequestFactory = require('../server/RequestFactory')
-const server = require('../server/server')
+const RequestFactory = require('../modules/common/RequestFactory')
+const server = require('../server')
 
 module.exports = async (event, context, callback) => {
   const request = RequestFactory.fromLambdaEvent(event)
