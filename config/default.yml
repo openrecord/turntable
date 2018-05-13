@@ -1,0 +1,6 @@
+---
+log:
+  level: debug
+  depth: 10
+  console:
+    enabled: true
