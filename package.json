@@ -34,7 +34,6 @@
     "config": "^1.30.0",
     "fastify": "^1.4.0",
     "lodash": "^4.17.10",
-    "sequelize": "^4.37.7",
     "winston": "^2.4.2"
   }
 }
