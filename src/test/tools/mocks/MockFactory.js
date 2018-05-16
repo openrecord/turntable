@@ -1,6 +1,7 @@
 const faker = require('faker')
 const _ = require('lodash')
 
+const RegisterDTO = require('../../../app/modules/auth/dtos/RegisterDTO')
 const User = require('../../../app/services/users/User')
 
 class MockFactory {
@@ -16,6 +17,13 @@ class MockFactory {
 
     const user = Object.assign(new User(), props)
     return user
+  }
+
+  /**
+   * @return {RegisterDTO}
+   */
+  static registerDto() {
+    return new RegisterDTO(faker.internet.email(), faker.internet.password())
   }
 }
 

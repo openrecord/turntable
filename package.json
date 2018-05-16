@@ -33,8 +33,10 @@
     }
   },
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "config": "^1.30.0",
     "fastify": "^1.4.0",
+    "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.10",
     "mysql2": "^1.5.3",
     "typeorm": "^0.2.5",

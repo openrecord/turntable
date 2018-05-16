@@ -16,6 +16,14 @@ class ServiceLocator {
   }
 
   /**
+   * @param {Object} override
+   * @returns {AuthService}
+   */
+  authService(override = null) {
+    return this._resolveService('_authService', './auth/AuthService', override)
+  }
+
+  /**
    * Resolves the service in serviceLocator.
    * @param {String} serviceKey - Key to set on ServiceLocator.
    * @param {String} requirePath - Path to the service class file.
