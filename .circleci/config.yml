@@ -7,6 +7,7 @@ jobs:
         environment:
           MYSQL_ROOT_PASSWORD: password
 
+    # TODO: Workflows: https://circleci.com/docs/2.0/workflows/
     steps:
       - checkout
 
@@ -20,7 +21,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: npm install
+      - run: npm ci
 
       - save_cache:
           paths:
