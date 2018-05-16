@@ -1,6 +1,13 @@
 ---
+db:
+  username: dev
+  password: anByU=9c77?cD26k
+  host: 0.0.0.0
+  port: 3306
+  logging: false
+
 log:
-  level: debug
+  level: silly
   depth: 10
   console:
     enabled: true

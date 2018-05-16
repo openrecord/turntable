@@ -23,7 +23,8 @@
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1",
     "serverless": "^1.27.2",
-    "serverless-offline": "^3.21.1"
+    "serverless-offline": "^3.21.1",
+    "testdouble": "^3.8.1"
   },
   "husky": {
     "hooks": {
@@ -34,6 +35,8 @@
     "config": "^1.30.0",
     "fastify": "^1.4.0",
     "lodash": "^4.17.10",
+    "mysql2": "^1.5.3",
+    "typeorm": "^0.2.5",
     "winston": "^2.4.2"
   }
 }

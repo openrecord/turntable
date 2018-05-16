@@ -4,7 +4,12 @@ const assert = require('assert')
 const _ = require('lodash')
 const td = require('testdouble')
 
+const db = require('../../app/services/database')
 const util = require('../../app/util/util')
+
+async function closeDb() {
+  await db.close()
+}
 
 /**
  * Deeply compare two objects or arrays of objects. The objects may be VOs or normal objects. The "expected" object may have functions as values,
@@ -63,8 +68,7 @@ const deepMatch = td.matchers.create({
 })
 
 module.exports = {
+  closeDb,
   deepCompare,
-  deepMatch,
-  ensureDynamoTable,
-  ensureKinesisStream
+  deepMatch
 }
