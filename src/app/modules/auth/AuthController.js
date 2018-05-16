@@ -9,7 +9,9 @@ class AuthController {
     const registerDto = RegisterDTO.fromRequest(request)
 
     const authService = serviceLocator.authService()
-    const user = await authService.register(registerDto)
+    const token = await authService.register(registerDto)
+
+    return {token}
   }
 }
 

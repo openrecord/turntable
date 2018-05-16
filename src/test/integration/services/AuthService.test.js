@@ -17,4 +17,11 @@ describe('AuthService', () => {
 
     assert.notEqual(token, null)
   })
+
+  test('decodeToken', async () => {
+    const token = await authService.register(MockFactory.registerDto())
+    const decoded = authService.decodeToken(token)
+
+    assert.notEqual(decoded, null)
+  })
 })

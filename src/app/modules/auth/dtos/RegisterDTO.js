@@ -9,7 +9,7 @@ class RegisterDTO {
     return new this(email, password)
   }
 
-  schema() {
+  static get schema() {
     return {
       body: {
         type: 'object',
