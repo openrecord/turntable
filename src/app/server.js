@@ -1,10 +1,11 @@
 const _ = require('lodash')
-const fastify = require('fastify')
+const Fastify = require('fastify')
 
-const server = fastify()
+/** @type {fastify.FastifyInstance} */
+const server = Fastify()
 
 // Routes
-const routes = _.union(require('./modules/healthcheck/healthcheckRoutes'))
+const routes = _.union(require('./modules/healthcheck/healthcheckRoutes'), require('./modules/auth/authRoutes'))
 
 _.each(routes, route => {
   server.route(route)

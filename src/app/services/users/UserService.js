@@ -8,7 +8,13 @@ class UserService {
     this._dao = serviceLocator.userDao()
   }
 
-  async create(user) {}
+  /**
+   * @param {object} obj
+   * @return {Promise<User>}
+   */
+  async create(obj) {
+    return this._dao.create(obj)
+  }
 }
 
 module.exports = UserService

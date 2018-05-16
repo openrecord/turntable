@@ -3,20 +3,20 @@ const typeorm = require('typeorm')
 const User = require('../../users/User')
 
 module.exports = new typeorm.EntitySchema({
-  name: "User",
+  name: 'User',
   target: User,
   columns: {
     id: {
       primary: true,
-      type: "int",
+      type: 'int',
       generated: true
     },
     email: {
-      type: "varchar"
+      type: 'varchar'
     },
     hashedPassword: {
-      type: "varchar",
+      type: 'varchar',
       nullable: true
     }
   }
-});
+})
