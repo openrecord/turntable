@@ -12,7 +12,7 @@ jobs:
 
       - run:
           name: Install mysql # in future, just use a docker image with node and mysql
-          command: sudo apt-get update && sudo apt-get install -y mysql-clientgs
+          command: sudo apt-get update && sudo apt-get install -y mysql-client
 
       - restore_cache:
           keys:
