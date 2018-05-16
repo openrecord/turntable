@@ -4,7 +4,8 @@
   "description": "Backend for the openrecord platform.",
   "scripts": {
     "start": "serverless offline",
-    "test": "TODO"
+    "test": "jest 'src/test/unit|src/test/integration'",
+    "test:circleci": "npm run -s test -- --ci --coverage"
   },
   "repository": {
     "type": "git",

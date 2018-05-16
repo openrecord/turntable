@@ -1,0 +1,44 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8
+      - image: mysql:5.7
+        environment:
+          MYSQL_ROOT_PASSWORD: password
+
+    # TODO: Workflows: https://circleci.com/docs/2.0/workflows/
+    steps:
+      - checkout
+
+      - run:
+          name: Install mysql # in future, just use a docker image with node and mysql
+          command: sudo apt-get update && sudo apt-get install -y mysql-client
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: npm ci
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Setup database.
+          command: bash src/database/setup_database.sh
+
+      - run:
+          name: Run all tests.
+          command: npm run -s test:circleci
+
+      - store_test_results:
+          path: test-reports
+
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
