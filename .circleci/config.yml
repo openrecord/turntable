@@ -10,6 +10,10 @@ jobs:
     steps:
       - checkout
 
+      - run:
+          name: Install mysql # in future, just use a docker image with node and mysql
+          command: sudo apt-get install -y mysql
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
@@ -22,10 +26,6 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
-      - run:
-          name: Install mysql # in future, just use a docker image with node and mysql
-          command: apt-get install -y mysql
 
       - run:
           name: Setup database.
