@@ -23,7 +23,7 @@ jobs:
 
       - run:
           name: Run all tests.
-          command: npm run -s test
+          command: npm run -s test:circleci
 
       - store_test_results:
           path: test-reports
