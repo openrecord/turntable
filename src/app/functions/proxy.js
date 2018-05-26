@@ -6,6 +6,7 @@ module.exports = async (event, context, callback) => {
   const response = await server.inject(request)
 
   return {
+    headers: response.headers,
     statusCode: response.statusCode,
     body: response.payload
   }

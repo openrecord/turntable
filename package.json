@@ -36,6 +36,7 @@
   "dependencies": {
     "bcrypt": "^2.0.1",
     "config": "^1.30.0",
+    "cors": "^2.8.4",
     "fastify": "^1.4.0",
     "fastify-register-routes": "^1.1.2",
     "glob": "^7.1.2",
