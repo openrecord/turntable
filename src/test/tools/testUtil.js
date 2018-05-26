@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 const assert = require('assert')
 const _ = require('lodash')
 const td = require('testdouble')
@@ -35,7 +33,7 @@ function deepCompare(actual, expected, strict = true) {
       } else if (_.isObject(expectedVal) && !_.isDate(expectedVal)) {
         deepCompare(actualVal, expectedVal, strict)
       } else {
-        assert.deepEqual(actualVal, expectedVal, `Comparing ${path}`)
+        assert.deepEqual(actualVal, expectedVal, `Comparing ${path}, expected [${expectedVal}] but received [${actualVal}].`)
       }
     })
 
@@ -45,11 +43,7 @@ function deepCompare(actual, expected, strict = true) {
       })
     }
   } catch (assertionErr) {
-    // Set expected and actual on the AssertionError so "<Click to show see difference>" shows original objects.
-    assertionErr.expected = expected
-    assertionErr.actual = actual
-    assertionErr.showDiff = true
-
+    // Optional: Do some error manipulation here.
     throw assertionErr
   }
 

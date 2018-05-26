@@ -1,11 +1,8 @@
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-
 const RegisterDTO = require('./dtos/RegisterDTO')
 const serviceLocator = require('../../services/serviceLocator')
 
 class AuthController {
-  static async register(request, reply) {
+  static async register(request) {
     const registerDto = RegisterDTO.fromRequest(request)
 
     const authService = serviceLocator.authService()

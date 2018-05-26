@@ -1,5 +1,4 @@
 const assert = require('assert')
-const faker = require('faker')
 
 const testUtil = require('../../tools/testUtil')
 const MockFactory = require('../../tools/mocks/MockFactory')

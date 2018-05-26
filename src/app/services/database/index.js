@@ -16,11 +16,11 @@ async function connect() {
       port: config.db.port,
       username: config.db.username,
       password: config.db.password,
-      database: 'openrecord_test',
+      database: config.db.database,
       synchronize: true,
       logging: config.db.logging,
       logger: 'advanced-console',
-      entities: [path.join(__dirname, 'schemas/*.js')]
+      entities: [path.join(__dirname, '..', '**/*Schema.js')]
     })
   }
 

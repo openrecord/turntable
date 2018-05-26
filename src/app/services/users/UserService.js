@@ -1,6 +1,3 @@
-const config = require('config')
-
-const log = require('../../util/logger')
 const serviceLocator = require('../serviceLocator')
 
 class UserService {
@@ -9,11 +6,15 @@ class UserService {
   }
 
   /**
-   * @param {object} obj
+   * @param {RegisterDTO} registerDto
+   * @param {string} hashedPassword
    * @return {Promise<User>}
    */
-  async create(obj) {
-    return this._dao.create(obj)
+  async register(registerDto, hashedPassword) {
+    return this._dao.create({
+      email: registerDto.email,
+      hashedPassword
+    })
   }
 }
 

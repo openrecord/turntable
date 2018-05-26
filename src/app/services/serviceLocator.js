@@ -24,6 +24,22 @@ class ServiceLocator {
   }
 
   /**
+   * @param {Object} override
+   * @returns {PlaylistService}
+   */
+  playlistService(override = null) {
+    return this._resolveService('_playlistService', './playlists/PlaylistService', override)
+  }
+
+  /**
+   * @param {Object} override
+   * @returns {PlaylistDao}
+   */
+  playlistDao(override = null) {
+    return this._resolveService('_playlistDao', './playlists/PlaylistDao', override)
+  }
+
+  /**
    * Resolves the service in serviceLocator.
    * @param {String} serviceKey - Key to set on ServiceLocator.
    * @param {String} requirePath - Path to the service class file.

@@ -6,17 +6,16 @@ const server = require('../../../app/server')
 
 afterAll(testUtil.closeDb)
 
-describe('auth', () => {
-  test('register', async () => {
+describe('playlists', () => {
+  test('create', async () => {
     const request = {
       method: 'POST',
       url: url.format({
         protocol: 'http',
-        pathname: '/auth/register'
+        pathname: '/playlists'
       }),
       payload: {
-        email: faker.internet.email(),
-        password: faker.internet.password()
+        name: faker.random.words()
       }
     }
 
@@ -25,14 +24,15 @@ describe('auth', () => {
     testUtil.deepCompare(
       response,
       {
-        statusCode: 200,
-        statusMessage: 'OK'
+        statusCode: 201,
+        statusMessage: 'Created'
       },
       false
     )
 
     testUtil.deepCompare(JSON.parse(response.payload), {
-      token: /w+/
+      id: /\d+/,
+      name: /\w+/
     })
   })
 })

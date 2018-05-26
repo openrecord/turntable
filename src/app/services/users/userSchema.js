@@ -1,10 +1,8 @@
 const typeorm = require('typeorm')
 
-const User = require('../../users/User')
-
 module.exports = new typeorm.EntitySchema({
   name: 'User',
-  target: User,
+  target: require('./User'),
   columns: {
     id: {
       primary: true,

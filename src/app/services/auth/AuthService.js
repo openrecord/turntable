@@ -20,10 +20,7 @@ class AuthService {
   async register(registerDto) {
     const hashedPassword = bcrypt.hashSync(registerDto.password, 8)
 
-    const user = await this._userService.create({
-      email: registerDto.email,
-      hashedPassword
-    })
+    const user = await this._userService.register(registerDto, hashedPassword)
 
     const secret = 'secret'
     const token = jwt.sign({id: user.id}, SECRET, {
