@@ -6,7 +6,9 @@ services:
       context: .
       dockerfile: ./docker/turntable/Dockerfile
     ports:
-      - 3000:3000
+      - 3099:3099
+    volumes:
+      - .:/app
     depends_on:
       - mysql
   mysql:

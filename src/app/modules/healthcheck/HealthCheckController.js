@@ -1,6 +1,6 @@
 class HealthCheckController {
   static async handleHealthCheck(request, reply) {
-    reply.send({healthy: true})
+    return {healthy: true}
   }
 }
 

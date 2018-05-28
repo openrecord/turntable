@@ -28,7 +28,7 @@ async function connect() {
 }
 
 async function close() {
-  return connection.close()
+  return connection && connection.close()
 }
 
 module.exports = {

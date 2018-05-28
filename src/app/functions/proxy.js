@@ -7,7 +7,7 @@ module.exports = async (event, context, callback) => {
   const response = await server.inject(request)
 
   if (process.env.IS_OFFLINE) {
-    console.log('Closing db')
+    console.log('Closing db.')
     await db.close()
   }
 
