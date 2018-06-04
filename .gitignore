@@ -12,3 +12,7 @@ node_modules
 
 # configs
 config/**/*local*.yml
+
+# Test output
+test-reports
+coverage
