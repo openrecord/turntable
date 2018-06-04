@@ -10,6 +10,13 @@ class PlaylistController {
 
     reply.code(201).send(result)
   }
+
+  static async get(request, reply) {
+    const playlistService = serviceLocator.playlistService()
+    const result = await playlistService.get() //TODO: Actually just get for authenticated user.
+
+    reply.code(200).send(result)
+  }
 }
 
 module.exports = PlaylistController

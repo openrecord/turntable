@@ -14,4 +14,9 @@ describe('PlaylistService', () => {
     const result = await service.create(dto)
     assert.notEqual(result, null)
   })
+
+  test('get', async () => {
+    const result = await service.get()
+    assert.notEqual(result, null)
+  })
 })
