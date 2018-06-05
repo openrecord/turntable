@@ -51,6 +51,13 @@ jobs:
           path: coverage
           destination: coverage
 
+      #TODO: In workflow
+      - setup_remote_docker
+
+      - run:
+          name: Docker Login
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
+
       - deploy:
           name: Push latest docker image to dockerhub if on master.
           command: |
