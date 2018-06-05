@@ -6,6 +6,7 @@ db:
   port: 3306
   logging: false
   database: openrecord
+  synchronize: false
 
 log:
   level: silly

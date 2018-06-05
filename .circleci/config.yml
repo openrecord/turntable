@@ -34,7 +34,7 @@ jobs:
 
       - run:
           name: Synchronize database schema.
-          command: .circleci/syncSchema.js
+          command: .circleci/synchronizeDatabase.js
 
       - run:
           name: Run all tests.

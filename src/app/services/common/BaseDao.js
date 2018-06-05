@@ -7,9 +7,15 @@ class BaseDao {
     return result
   }
 
-  async get() {
+  async findAll(obj) {
     const repo = await this._repo()
-    const result = repo.find()
+    const result = repo.find(obj)
+    return result
+  }
+
+  async findOne(obj) {
+    const repo = await this._repo()
+    const result = repo.findOne(obj)
     return result
   }
 

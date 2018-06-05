@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const {connect, close} = require('../src/app/services/database')
+const {connect} = require('../src/app/services/database')
 
 if (process.env.NODE_ENV !== 'test') {
   console.log('Overriding NODE_ENV to "test"')
