@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "description": "Backend for the openrecord platform.",
   "scripts": {
-    "start": "serverless offline --host 0.0.0.0 --port 3099",
-    "test": "jest 'src/test/unit|src/test/integration'",
+    "start": "serverless offline --host 0.0.0.0",
+    "test": "NODE_ENV=test jest 'src/test/unit|src/test/integration'",
+    "test:unit": "NODE_ENV=test jest 'src/test/unit'",
+    "test:integration": "NODE_ENV=test jest 'src/test/integration'",
     "test:circleci": "npm run -s test -- --ci --coverage",
     "db:setup": "bash src/database/setup_database.sh",
     "deploy": "AWS_PROFILE=chas-aws sls deploy"

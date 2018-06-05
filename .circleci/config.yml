@@ -30,7 +30,7 @@ jobs:
 
       - run:
           name: Setup database.
-          command: bash src/database/setup_database.sh
+          command: npm run -s db:setup
 
       - run:
           name: Run all tests.
