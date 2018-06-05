@@ -7,34 +7,32 @@ const User = require('../../../app/services/users/User')
 
 class MockFactory {
   /**
-   * @param {object|object[]} props
+   * @param {boolean|object|object[]} [props]
    * @param {boolean} [persistToDb = true]
-   * @return {User|User[]|User<Playlist>|Promise<User[]>}
+   * @return {Promise<User>|Promise<User[]>}
    */
   static user(props = {}, persistToDb = true) {
-    const UserDao = require('../../../app/services/users/UserDao')
-
-    const defaults = _.defaults(props, {
+    const defaults = {
       email: faker.internet.email(),
       hashedPassword: faker.internet.password()
-    })
+    }
 
-    return this._mock(props, defaults, new UserDao(), persistToDb)
+    const UserDao = require('../../../app/services/users/UserDao')
+    return this._mock(defaults, new UserDao(), props, persistToDb)
   }
 
   /**
-   * @param {object|object[]} props
+   * @param {boolean|object|object[]} [props]
    * @param {boolean} [persistToDb = true]
-   * @return {Playlist|Playlist[]|Promise<Playlist>|Promise<Playlist[]>}
+   * @return {Promise<Playlist>|Promise<Playlist[]>}
    */
   static playlist(props = {}, persistToDb = true) {
-    const PlaylistDao = require('../../../app/services/playlists/PlaylistDao')
-
-    const defaults = _.defaults(props, {
+    const defaults = {
       name: faker.random.words()
-    })
+    }
 
-    return this._mock(props, defaults, new PlaylistDao(), persistToDb)
+    const PlaylistDao = require('../../../app/services/playlists/PlaylistDao')
+    return this._mock(defaults, new PlaylistDao(), props, persistToDb)
   }
 
   /**
@@ -53,13 +51,18 @@ class MockFactory {
 
   /**
    * Merge defaults into objects, then create the VOs, then save to db if necessary.
-   * @param {object|object[]} objects
    * @param {object|function} defaults - Object with default props. If a function is provided, it will be called to generate the defaults for each object.
    * @param {BaseDao} dao
+   * @param {object|object[]|boolean} [objects] - The optional object or array of objects to mock.
    * @param {boolean} [persistToDb = true] - If present, will persist to the database
    * @return {object|object[]|Promise<object>|Promise<object[]>}
    */
-  static async _mock(objects, defaults = {}, dao, persistToDb = true) {
+  static async _mock(defaults = {}, dao, objects, persistToDb = true) {
+    if (_.isBoolean(objects)) {
+      persistToDb = objects
+      objects = {}
+    }
+
     const ObjectClass = dao.entityClass()
 
     let dummies = _.castArray(objects)
