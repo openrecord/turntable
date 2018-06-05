@@ -10,7 +10,7 @@ describe('PlaylistDao', () => {
   const dao = serviceLocator.playlistDao()
 
   test('create', async () => {
-    const dummy = MockFactory.playlist()
+    const dummy = await MockFactory.playlist(false)
 
     const result = await dao.create(dummy)
 

@@ -9,3 +9,10 @@ node_modules
 
 # mac
 .DS_Store
+
+# configs
+config/**/*local*.yml
+
+# Test output
+test-reports
+coverage

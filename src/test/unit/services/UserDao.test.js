@@ -11,7 +11,7 @@ describe('UserDao', () => {
   const dao = serviceLocator.userDao()
 
   test('create', async () => {
-    const dummyUser = MockFactory.user()
+    const dummyUser = await MockFactory.user(false)
 
     const user = await dao.create(dummyUser)
 

@@ -14,4 +14,11 @@ describe('PlaylistService', () => {
     const result = await service.create(dto)
     assert.notEqual(result, null)
   })
+
+  test('get', async () => {
+    await MockFactory.playlist()
+    const result = await service.get()
+    assert.notEqual(result, null)
+    assert.ok(result.length > 0)
+  })
 })

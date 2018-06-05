@@ -7,5 +7,10 @@ module.exports = [
     path: '/playlists',
     schema: CreatePlaylistDTO.schema,
     handler: PlaylistController.create
+  },
+  {
+    method: 'GET',
+    path: '/playlists',
+    handler: PlaylistController.get
   }
 ]

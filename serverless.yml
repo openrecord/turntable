@@ -19,6 +19,15 @@ functions:
           method: ANY
           path: /{proxy+}
           cors: true
+package:
+  exclude:
+    - config/**/*local*.yml
+    - src/database/*
+    - src/test/*
+    - docker/*
+    - .idea/**
+    - .circleci/**
+    - .*
 
 plugins:
   - serverless-offline

@@ -3,10 +3,14 @@
   "version": "0.0.1",
   "description": "Backend for the openrecord platform.",
   "scripts": {
-    "start": "serverless offline",
-    "test": "jest 'src/test/unit|src/test/integration'",
+    "start": "serverless offline --host 0.0.0.0",
+    "test": "NODE_ENV=test jest 'src/test/unit|src/test/integration'",
+    "test:unit": "NODE_ENV=test jest 'src/test/unit'",
+    "test:integration": "NODE_ENV=test jest 'src/test/integration'",
     "test:circleci": "npm run -s test -- --ci --coverage",
-    "db:setup": "bash src/database/setup_database.sh"
+    "db:setup": "bash bin/database/setup_database.sh",
+    "db:sync:test": "NODE_ENV=test node bin/database/synchronizeDatabase",
+    "deploy": "AWS_PROFILE=chas-aws sls deploy"
   },
   "repository": {
     "type": "git",
@@ -39,6 +43,7 @@
     "cors": "^2.8.4",
     "fastify": "^1.4.0",
     "fastify-register-routes": "^1.1.2",
+    "fastify-swagger": "^0.12.0",
     "glob": "^7.1.2",
     "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.10",
