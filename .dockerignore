@@ -1,0 +1,6 @@
+node_modules
+docker
+coverage
+test_results
+.serverless
+.circleci

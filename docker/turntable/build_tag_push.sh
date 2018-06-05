@@ -2,6 +2,9 @@
 
 IMAGE=openrecord/turntable
 
+echo "Building latest image: [Image: $IMAGE]"
+docker build . --file docker/turntable/Dockerfile
+
 echo "Tagging image as latest: [Image: $IMAGE, Tag: $IMAGE:latest]"
 docker tag ${IMAGE} ${IMAGE}:latest
 
