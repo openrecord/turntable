@@ -50,3 +50,10 @@ jobs:
       - store_artifacts:
           path: coverage
           destination: coverage
+
+      - deploy:
+          name: Push latest docker image to dockerhub if on master.
+          command: |
+            # if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              npm run -s docker:push
+            # fi
