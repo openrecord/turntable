@@ -9,6 +9,7 @@
     "test:integration": "NODE_ENV=test jest 'src/test/integration'",
     "test:circleci": "npm run -s test -- --ci --coverage",
     "db:setup": "bash src/database/setup_database.sh",
+    "db:sync:test": "NODE_ENV=test node bin/database/synchronizeDatabase",
     "deploy": "AWS_PROFILE=chas-aws sls deploy"
   },
   "repository": {
