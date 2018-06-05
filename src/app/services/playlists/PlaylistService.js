@@ -20,7 +20,7 @@ class PlaylistService {
    * @return {Promise<Playlist[]>}
    */
   async get() {
-    return this._dao.get()
+    return this._dao.findAll({})
   }
 }
 
