@@ -10,7 +10,8 @@
     "test:circleci": "npm run -s test -- --ci --coverage",
     "db:setup": "bash bin/database/setup_database.sh",
     "db:sync:test": "NODE_ENV=test node bin/database/synchronizeDatabase",
-    "deploy": "AWS_PROFILE=chas-aws sls deploy"
+    "deploy": "AWS_PROFILE=chas-aws sls deploy",
+    "docker:push": "docker/turntable/build_tag_push.sh"
   },
   "repository": {
     "type": "git",
