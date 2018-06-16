@@ -1,4 +1,7 @@
 ---
+serverless:
+  port: PORT
+
 db:
   synchronize: DB_SYNCHRONIZE
 
