@@ -1,4 +1,7 @@
 ---
+serverless:
+  port: 7001
+
 db:
   username: dev
   password: anByU=9c77?cD26k

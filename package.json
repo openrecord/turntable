@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Backend for the openrecord platform.",
   "scripts": {
-    "start": "serverless offline --host 0.0.0.0",
+    "start": "serverless offline",
     "test": "NODE_ENV=test jest 'src/test/unit|src/test/integration'",
     "test:unit": "NODE_ENV=test jest 'src/test/unit'",
     "test:integration": "NODE_ENV=test jest 'src/test/integration'",

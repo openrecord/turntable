@@ -31,3 +31,9 @@ package:
 
 plugins:
   - serverless-offline
+
+custom:
+  config: ${file(./config/serverless-config.js)} # We load a javascript file here in order to leverage node-config.
+  serverless-offline:
+    host: 0.0.0.0
+    port: ${self:custom.config.serverless.port}
