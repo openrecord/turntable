@@ -18,7 +18,7 @@ COPY ./src/app src/app
 COPY ./bin bin
 COPY ./serverless.yml serverless.yml
 
-EXPOSE 3000
+EXPOSE 7001
 
 # Start the server
 CMD npm start

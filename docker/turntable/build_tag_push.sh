@@ -6,7 +6,7 @@ PROJECT_ROOT=$(git rev-parse --show-toplevel)
 cd ${PROJECT_ROOT}
 
 echo "Building Docker image: [Image: $IMAGE]"
-docker build . --file docker/Dockerfile
+docker build . --file docker/turntable/Dockerfile -t ${IMAGE}
 
 echo "Tagging image as latest: [Image: $IMAGE, Tag: $IMAGE:latest]"
 docker tag ${IMAGE} ${IMAGE}:latest

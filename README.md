@@ -1,6 +1,6 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-# turntable
+# Openrecord Back-End
 
 Backend for the openrecord platform.
 
@@ -31,6 +31,12 @@ If you like, you can set up prettier to format on-save within WebStorm 2018.1 or
 ## Configuration
 
 TODO
+
+## Tech
+ - [Serverless](https://serverless.com/)
+ - [AWS Lambda] (https://aws.amazon.com/lambda)
+ - [Docker](https://docs.docker.com/)
+ - [Prettier](https://prettier.io/)
 
 ## TODO
 

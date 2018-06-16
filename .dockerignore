@@ -1,0 +1,24 @@
+# Docker config files
+.dockerignore
+docker
+docker-compose*.yml
+
+# node_modules --> need the server to npm install due to OS-dependent stuff that can happen (e.g., compiling files)
+node_modules
+
+# Misc files/folders in the project root
+.nvmrc
+.prettier*
+.git
+.gitignore
+.idea
+npm-debug.log
+README.md
+docs
+
+# Local overrides node-config
+config/**/local*
+
+# Test results
+test_results
+coverage
