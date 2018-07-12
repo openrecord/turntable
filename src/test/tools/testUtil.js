@@ -61,8 +61,18 @@ const deepMatch = td.matchers.create({
   }
 })
 
+/**
+ * Generates a simple request for end-to-end tests.
+ */
+const req = (method, url, payload) => ({
+  method,
+  url,
+  payload
+})
+
 module.exports = {
   closeDb,
   deepCompare,
-  deepMatch
+  deepMatch,
+  req
 }

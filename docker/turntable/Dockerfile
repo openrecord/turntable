@@ -1,4 +1,4 @@
-FROM node:8.9
+FROM node:10
 MAINTAINER <chasdeveas@gmail.com>
 
 # Create our core app & src folders

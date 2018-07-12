@@ -6,11 +6,12 @@ services:
       context: .
       dockerfile: ./docker/turntable/Dockerfile
     ports:
-      - 3099:3099
+      - 7001:7001
     volumes:
-      - .:/app
+      - ./src:/app/src
     depends_on:
       - mysql
+    command: node_modules/.bin/nodemon
   mysql:
     image: mysql:5.7
     volumes:

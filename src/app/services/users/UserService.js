@@ -6,15 +6,20 @@ class UserService {
   }
 
   /**
-   * @param {RegisterDTO} registerDto
+   * @param {string} email
    * @param {string} hashedPassword
    * @return {Promise<User>}
    */
-  async register(registerDto, hashedPassword) {
-    return this._dao.create({
-      email: registerDto.email,
-      hashedPassword
-    })
+  async create(email, hashedPassword) {
+    return this._dao.create({email, hashedPassword})
+  }
+
+  /**
+   * @param {string} email
+   * @return {Promise<User>}
+   */
+  async getByEmail(email) {
+    return this._dao.findOne({email})
   }
 }
 

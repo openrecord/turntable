@@ -25,8 +25,9 @@
   "homepage": "https://github.com/openrecord/turntable#readme",
   "devDependencies": {
     "faker": "^4.1.0",
-    "husky": "^0.14.3",
+    "husky": "^1.0.0-rc.13",
     "jest": "^22.4.3",
+    "nodemon": "^1.18.1",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1",
     "serverless": "^1.27.3",
@@ -39,10 +40,12 @@
     }
   },
   "dependencies": {
-    "bcrypt": "^2.0.1",
+    "argon2": "^0.19.3",
+    "boom": "^7.2.0",
     "config": "^1.30.0",
     "cors": "^2.8.4",
     "fastify": "^1.4.0",
+    "fastify-boom": "^0.1.0",
     "fastify-register-routes": "^1.1.2",
     "fastify-swagger": "^0.12.0",
     "glob": "^7.1.2",
@@ -51,5 +54,15 @@
     "mysql2": "^1.5.3",
     "typeorm": "^0.2.5",
     "winston": "^2.4.2"
+  },
+  "nodemonConfig": {
+    "delay": "2500ms",
+    "watch": [
+      "src"
+    ],
+    "execMap": {
+      "js": "npm start",
+      "yml": "npm start"
+    }
   }
 }

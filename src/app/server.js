@@ -2,6 +2,7 @@ const Fastify = require('fastify')
 const cors = require('cors')
 const fastifyGlob = require('./plugins/fastify-glob')
 const fastifySwagger = require('fastify-swagger')
+const fastifyBoom = require('fastify-boom')
 
 /** @type {fastify.FastifyInstance} */
 const server = Fastify()
@@ -22,12 +23,12 @@ server.register(fastifySwagger, {
   routePrefix: '/doc'
 })
 
+server.register(fastifyBoom)
+
 // Routes
 server.register(fastifyGlob, {
   routesGlob: './modules/**/*Routes.js'
 })
-
-//TODO: Add open-api (swagger)
 
 /** @type {fastify.FastifyInstance} */
 module.exports = server

@@ -3,6 +3,7 @@ const _ = require('lodash')
 
 const CreatePlaylistDTO = require('../../../app/modules/playlists/dtos/CreatePlaylistDTO')
 const RegisterDTO = require('../../../app/modules/auth/dtos/RegisterDTO')
+const AuthService = require('../../../app/services/auth/AuthService')
 const User = require('../../../app/services/users/User')
 
 class MockFactory {
@@ -11,7 +12,12 @@ class MockFactory {
    * @param {boolean} [persistToDb = true]
    * @return {Promise<User>|Promise<User[]>}
    */
-  static user(props = {}, persistToDb = true) {
+  static async user(props = {}, persistToDb = true) {
+    if (props.password) {
+      props.hashedPassword = await AuthService.hashPassword(props.password)
+      delete props.password
+    }
+
     const defaults = {
       email: faker.internet.email(),
       hashedPassword: faker.internet.password()
