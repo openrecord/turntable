@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
-if (!['test', 'dev'].includes(process.env.NODE_ENV)) {
+const ENV = process.env.NODE_ENV
+const FORCE = ['-f', '--force'].includes(process.argv[2])
+
+if (!['test', 'dev'].includes(ENV) && !FORCE) {
   console.error('Can only synchronize test or development databases.')
   process.exit(1)
 }
@@ -13,4 +16,5 @@ async function sync() {
   await conn.close()
 }
 
+console.info('Synchronizing database: ' + ENV)
 sync()

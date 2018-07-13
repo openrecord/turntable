@@ -39,7 +39,7 @@ jobs:
 
       - run:
           name: Setup database.
-          command: npm run -s db:setup
+          command: npm run -s db:setup:dev
 
       - run:
           name: Synchronize database schema.

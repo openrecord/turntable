@@ -16,3 +16,10 @@ log:
   depth: 10
   console:
     enabled: true
+
+aws:
+  region: us-east-1
+  securityGroupIds: []
+  subnetIds: []
+  domainName:
+  certificateArn:

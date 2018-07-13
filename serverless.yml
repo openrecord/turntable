@@ -22,6 +22,9 @@ functions:
       DB_PASSWORD: ${self:custom.config.db.password}
       DB_HOST: ${self:custom.config.db.host}
       DB_PORT: ${self:custom.config.db.port}
+    vpc:
+      securityGroupIds: ${self:custom.config.aws.securityGroupIds}
+      subnetIds: ${self:custom.config.aws.subnetIds}
 
 package:
   exclude:
