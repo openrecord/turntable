@@ -12,7 +12,7 @@ db:
   synchronize: false
 
 log:
-  level: silly
+  level: info
   depth: 10
   console:
     enabled: true

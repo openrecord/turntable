@@ -1,6 +1,8 @@
 module.exports = serverless => {
-  if (['staging', 'prod'].includes(serverless.service.provider.stage)) {
-    process.env.NODE_ENV = serverless.service.provider.stage
+  const stage = serverless.processedInput.options.stage
+  if (['staging', 'prod'].includes(stage)) {
+    console.log('Loading node-config with NODE_ENV=' + stage)
+    process.env.NODE_ENV = stage
   }
 
   return require('config')

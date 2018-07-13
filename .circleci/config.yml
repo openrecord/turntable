@@ -1,13 +1,22 @@
 version: 2
+
+workflows:
+  version: 2
+  test-and-push-docker:
+    jobs:
+      - test
+      - build-docker:
+          requires:
+            - test
+
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/node:8
       - image: mysql:5.7
         environment:
           MYSQL_ROOT_PASSWORD: password
 
-    # TODO: Workflows: https://circleci.com/docs/2.0/workflows/
     steps:
       - checkout
 
@@ -50,3 +59,15 @@ jobs:
       - store_artifacts:
           path: coverage
           destination: coverage
+
+  build-docker:
+    docker:
+      - image: docker:17.05.0-ce-git
+
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: |
+          if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            docker/api/build_tag_push.sh
+          fi

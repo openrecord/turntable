@@ -1,0 +1,13 @@
+version: '3'
+services:
+  api:
+    image: openrecord/turntable
+    build:
+      context: ../../
+      dockerfile: docker/api/Dockerfile
+    volumes:
+      - ~/.aws/credentials:/root/.aws/credentials # Mount aws credentials so a user can deploy using AWS_PROFILE.
+      - ../../config:/app/config # For deploy we want to allow local-*.yml files, so mount the config directory.
+    environment:
+      AWS_PROFILE: turntable # By default, it expects AWS_PROFILE=turntable
+    command: node_modules/.bin/serverless deploy

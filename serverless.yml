@@ -12,15 +12,17 @@ provider:
 functions:
   proxy:
     handler: src/app/functions.proxy
+    description: Proxies an incoming API Gateway request to the node app.
     events:
-      - http:
-          method: ANY
-          path: /
-          cors: true
-      - http:
-          method: ANY
-          path: /{proxy+}
-          cors: true
+      - http: ANY /
+      - http: ANY {proxy+}
+    environment:
+      NODE_ENV: ${self:provider.stage}
+      DB_USERNAME: ${self:custom.config.db.username}
+      DB_PASSWORD: ${self:custom.config.db.password}
+      DB_HOST: ${self:custom.config.db.host}
+      DB_PORT: ${self:custom.config.db.port}
+
 package:
   exclude:
     - config/**/*local*.yml

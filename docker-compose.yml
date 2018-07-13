@@ -4,7 +4,7 @@ services:
     image: openrecord/turntable
     build:
       context: .
-      dockerfile: ./docker/turntable/Dockerfile
+      dockerfile: docker/api/Dockerfile
     ports:
       - 7001:7001
     volumes:
@@ -12,6 +12,7 @@ services:
     depends_on:
       - mysql
     command: node_modules/.bin/nodemon
+
   mysql:
     image: mysql:5.7
     volumes:

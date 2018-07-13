@@ -10,8 +10,8 @@
     "test:circleci": "npm run -s test -- --ci --coverage",
     "db:setup": "bash bin/database/setup_database.sh",
     "db:sync:test": "NODE_ENV=test node bin/database/synchronizeDatabase",
-    "deploy": "AWS_PROFILE=chas-aws sls deploy",
-    "docker:push": "docker/turntable/build_tag_push.sh"
+    "docker:push": "docker/turntable/build_tag_push.sh",
+    "deploy:staging": "serverless deploy -s staging"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
     "nodemon": "^1.18.1",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1",
-    "serverless": "^1.27.3",
+    "serverless": "1.27.3",
     "serverless-offline": "^3.21.1",
     "testdouble": "^3.8.1"
   },
@@ -64,5 +64,11 @@
       "js": "npm start",
       "yml": "npm start"
     }
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "jest-junit": {
+    "output": "test-reports/junit.xml"
   }
 }
