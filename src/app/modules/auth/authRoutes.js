@@ -14,5 +14,10 @@ module.exports = [
     path: '/auth/token',
     schema: LoginDTO.schema,
     handler: AuthController.login
+  },
+  {
+    method: 'GET',
+    path: '/auth/token',
+    handler: AuthController.refresh
   }
 ]

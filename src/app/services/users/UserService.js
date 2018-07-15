@@ -15,6 +15,14 @@ class UserService {
   }
 
   /**
+   * @param {int} id
+   * @return {Promise<User>}
+   */
+  async getById(id) {
+    return this._dao.findOne({id})
+  }
+
+  /**
    * @param {string} email
    * @return {Promise<User>}
    */

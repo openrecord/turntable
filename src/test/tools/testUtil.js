@@ -29,7 +29,7 @@ function deepCompare(actual, expected, strict = true) {
           `Comparing ${path} [${actualVal}] using function${expectedVal.name ? ' ' + expectedVal.name : ''}`
         )
       } else if (_.isRegExp(expectedVal)) {
-        assert.ok(expectedVal.test(actualVal), `RegExp ${expectedVal} not satisfied: ${actualVal}`)
+        assert.ok(expectedVal.test(actualVal || ''), `RegExp ${expectedVal} not satisfied: ${actualVal}`)
       } else if (_.isObject(expectedVal) && !_.isDate(expectedVal)) {
         deepCompare(actualVal, expectedVal, strict)
       } else {
@@ -64,15 +64,26 @@ const deepMatch = td.matchers.create({
 /**
  * Generates a simple request for end-to-end tests.
  */
-const req = (method, url, payload) => ({
+const req = (method, url, payload = undefined, headers = undefined) => ({
   method,
   url,
-  payload
+  payload,
+  headers
 })
+
+const expectResponse = (actualResponse, expectedCode, expectedPayload, expectedHeaders) => {
+  expect(actualResponse).toBeInstanceOf(Object)
+  expect(actualResponse.statusCode).toBe(expectedCode)
+  deepCompare(JSON.parse(actualResponse.payload), expectedPayload, false)
+  if (expectedHeaders) {
+    deepCompare(actualResponse.headers, expectedHeaders, false)
+  }
+}
 
 module.exports = {
   closeDb,
   deepCompare,
   deepMatch,
-  req
+  req,
+  expectResponse
 }

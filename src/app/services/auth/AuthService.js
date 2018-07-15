@@ -5,8 +5,8 @@ const jwt = require('jsonwebtoken')
 const log = require('../../util/logger')
 const serviceLocator = require('../serviceLocator')
 
-const SALT = '$2b$10$r3kc/Uah9UA3xWdCckUziu' // generated using bcrypt.genSaltSync()
-const SECRET = 'sssshhhhhhhh'
+const SECRET = '8|s^vSX>#hA4x:Vt._}e;TkDP_y_O3O|E~meeK_-B07&4[J]FOy6S#q0Fm>vvj'
+const ONE_WEEK = 604800 // One week in minutes
 
 class AuthService {
   constructor() {
@@ -44,6 +44,21 @@ class AuthService {
   }
 
   /**
+   * Given a valid token, return a new token.
+   * @param {string} token - Existing valid token.
+   * @return {Promise<string>} - JWT containing user id.
+   */
+  async refresh(token) {
+    const {userId} = await AuthService.decodeToken(token)
+    const user = await this._userService.getById(userId)
+    if (!user) {
+      throw new Error('Could not find user by id.')
+    }
+
+    return this._jwt(user)
+  }
+
+  /**
    * Return hashed password.
    * @param {string} password - plaintext password.
    * @return {string} - hashed password.
@@ -57,17 +72,21 @@ class AuthService {
   }
 
   static async decodeToken(token) {
-    return jwt.verify(token, SECRET)
+    try {
+      return jwt.verify(token, SECRET)
+    } catch (err) {
+      throw new Error('Invalid token.')
+    }
   }
 
   /**
    * Generate a JWT for the user.
    * @param {User} user
-   * @param {int} [expMins = 5] - Minutes until expiration.
+   * @param {int} [expMins = 604800] - Minutes until expiration. Defaults to one week.
    * @return {string} - JWT containing user id.
    * @private
    */
-  _jwt(user, expMins = 5) {
+  _jwt(user, expMins = ONE_WEEK) {
     return jwt.sign({userId: user.id}, SECRET, {
       expiresIn: expMins + 'm'
     })

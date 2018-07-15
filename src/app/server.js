@@ -1,17 +1,13 @@
 const Fastify = require('fastify')
-const cors = require('cors')
-const fastifyGlob = require('./plugins/fastify-glob')
-const fastifySwagger = require('fastify-swagger')
-const fastifyBoom = require('fastify-boom')
 
 /** @type {fastify.FastifyInstance} */
 const server = Fastify()
 
 // Middleware
-server.use(cors())
+server.use(require('cors')())
 
 // Plugins
-server.register(fastifySwagger, {
+server.register(require('fastify-swagger'), {
   swagger: {
     info: {
       title: 'openrecord API',
@@ -23,10 +19,11 @@ server.register(fastifySwagger, {
   routePrefix: '/doc'
 })
 
-server.register(fastifyBoom)
+server.register(require('fastify-boom'))
+server.register(require('fastify-cookie'))
 
 // Routes
-server.register(fastifyGlob, {
+server.register(require('./plugins/fastify-glob'), {
   routesGlob: './modules/**/*Routes.js'
 })
 

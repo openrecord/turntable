@@ -2,11 +2,12 @@ const faker = require('faker')
 
 const factory = require('../../tools/mocks/MockFactory')
 const tutil = require('../../tools/testUtil')
+const AuthService = require('../../../app/services/auth/AuthService')
 const server = require('../../../app/server')
 
 afterAll(tutil.closeDb)
 
-describe('auth', () => {
+describe('POST /auth/register', () => {
   test('register', async () => {
     const response = await server.inject(
       tutil.req('POST', '/auth/register', {
@@ -15,42 +16,22 @@ describe('auth', () => {
       })
     )
 
-    tutil.deepCompare(
-      response,
-      {
-        statusCode: 200,
-        statusMessage: 'OK'
-      },
-      false
-    )
-
-    tutil.deepCompare(JSON.parse(response.payload), {
-      token: /\w+\.\w+\.\w+/
-    })
+    tutil.expectResponse(response, 200, {sessionToken: /\w+\.\w+\.\w+/}, {'set-cookie': /sid=\w+\.\w+\.\w+/})
   })
+})
 
-  test('token succeeds', async () => {
+describe('POST /auth/token', () => {
+  test('returns a generated session token', async () => {
     const email = faker.internet.email()
     const password = faker.internet.password()
     await factory.user({email, password})
 
     const response = await server.inject(tutil.req('POST', '/auth/token', {email, password}))
 
-    tutil.deepCompare(
-      response,
-      {
-        statusCode: 200,
-        statusMessage: 'OK'
-      },
-      false
-    )
-
-    tutil.deepCompare(JSON.parse(response.payload), {
-      token: /\w+\.\w+\.\w+/
-    })
+    tutil.expectResponse(response, 200, {sessionToken: /\w+\.\w+\.\w+/}, {'set-cookie': /sid=\w+\.\w+\.\w+/})
   })
 
-  test('token fails', async () => {
+  test('returns a 401 when the user does not exist', async () => {
     const response = await server.inject(
       tutil.req('POST', '/auth/token', {
         email: faker.internet.email(),
@@ -58,14 +39,30 @@ describe('auth', () => {
       })
     )
 
-    tutil.deepCompare(
-      response,
-      {
-        statusCode: 401,
-        statusMessage: 'Unauthorized',
-        payload: p => JSON.parse(p).message === 'Could not find user by email.'
-      },
-      false
-    )
+    tutil.expectResponse(response, 401, {message: 'Could not find user by email.'})
+  })
+})
+
+describe('GET /auth/token', () => {
+  test('returns a refreshed token when existing token is passed as cookie', async () => {
+    const email = faker.internet.email()
+    const password = faker.internet.password()
+    await factory.user({email, password})
+
+    // Generate and retrieve initial token
+    const {payload} = await server.inject(tutil.req('POST', '/auth/token', {email, password}))
+    const {sessionToken} = JSON.parse(payload)
+
+    // Refresh using token
+    const sessionCookie = 'sid=' + sessionToken
+    const response = await server.inject(tutil.req('GET', '/auth/token', null, {cookie: sessionCookie}))
+
+    tutil.expectResponse(response, 200, {sessionToken: /\w+\.\w+\.\w+/}, {'set-cookie': /sid=\w+\.\w+\.\w+/})
+  })
+
+  test('returns a 401 when the existing token is not valid', async () => {
+    const badSessionCookie = 'sid=asdf.1234.asdf'
+    const response = await server.inject(tutil.req('GET', '/auth/token', null, {cookie: badSessionCookie}))
+    tutil.expectResponse(response, 401, {message: 'Invalid token.'})
   })
 })
