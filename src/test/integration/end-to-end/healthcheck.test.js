@@ -9,18 +9,6 @@ afterAll(tutil.closeDb)
 describe('healthcheck', () => {
   test('ok', async () => {
     const response = await server.inject(tutil.req('GET', '/healthcheck'))
-
-    tutil.deepCompare(
-      response,
-      {
-        statusCode: 200,
-        statusMessage: 'OK',
-        headers: {
-          'access-control-allow-origin': '*'
-        },
-        payload: p => _.isEqual(JSON.parse(p), {healthy: true})
-      },
-      false
-    )
+    tutil.expectResponse(response, 200, {healthy: true}, {'access-control-allow-origin': '*'})
   })
 })
