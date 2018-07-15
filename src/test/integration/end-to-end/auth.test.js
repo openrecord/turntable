@@ -28,7 +28,12 @@ describe('POST /auth/token', () => {
 
     const response = await server.inject(tutil.req('POST', '/auth/token', {email, password}))
 
-    tutil.expectResponse(response, 200, {sessionToken: /\w+\.\w+\.\w+/}, {'set-cookie': /sid=\w+\.\w+\.\w+/})
+    tutil.expectResponse(
+      response,
+      200,
+      {sessionToken: /\w+\.\w+\.\w+/},
+      {'set-cookie': /sid=\w+\.\w+\.\w+/, 'access-control-allow-credentials': 'true'}
+    )
   })
 
   test('returns a 401 when the user does not exist', async () => {

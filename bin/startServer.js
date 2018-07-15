@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-
+const config = require('config')
 const server = require('../src/app/server')
 
-const PORT = 3099
-
-server.listen(PORT, 'localhost', err => {
-  console.log('Listening on ' + PORT)
+const port = config.serverless.port
+server.listen(port, 'localhost', err => {
+  console.log('Listening on ' + port)
 })

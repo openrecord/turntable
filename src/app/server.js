@@ -4,7 +4,8 @@ const Fastify = require('fastify')
 const server = Fastify()
 
 // Middleware
-server.use(require('cors')())
+// Access-Control-Allow-Origin, Access-Control-Allow-Credentials
+server.use(require('cors')({origin: true, credentials: true}))
 
 // Plugins
 server.register(require('fastify-swagger'), {
