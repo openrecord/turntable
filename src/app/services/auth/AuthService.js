@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const log = require('../../util/logger')
 const serviceLocator = require('../serviceLocator')
 
-const SECRET = '8|s^vSX>#hA4x:Vt._}e;TkDP_y_O3O|E~meeK_-B07&4[J]FOy6S#q0Fm>vvj'
+const SECRET = config.auth.jwtSecret
 const ONE_WEEK = 604800 // One week in minutes
 
 class AuthService {

@@ -23,3 +23,6 @@ aws:
   subnetIds: []
   domainName:
   certificateArn:
+
+auth:
+  jwtSecret: shhh
