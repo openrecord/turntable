@@ -31,7 +31,7 @@ describe('POST /auth/token', () => {
       response,
       200,
       {sessionToken: /\w+\.\w+\.\w+/},
-      {'set-cookie': /sid=\S+\.\S+\.\S+; Path=\//, 'access-control-allow-credentials': 'true', vary: 'Origin'}
+      {'set-cookie': /sid=\S+\.\S+\.\S+; Path=\//, 'access-control-allow-credentials': 'true'}
     )
   })
 

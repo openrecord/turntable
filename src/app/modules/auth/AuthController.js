@@ -46,7 +46,8 @@ class AuthController {
   }
 
   static _setAuthenticationCookie(reply, sessionToken) {
-    reply.setCookie('sid', sessionToken, {path: '/', httpOnly: false, secure: false, sameSite: false})
+    // Note: May need to play with httpOnly, secure, and sameSite options.
+    reply.setCookie('sid', sessionToken, {path: '/'})
   }
 }
 
