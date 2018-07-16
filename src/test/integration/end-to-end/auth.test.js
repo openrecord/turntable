@@ -15,7 +15,7 @@ describe('POST /auth/register', () => {
       })
     )
 
-    tutil.expectResponse(response, 200, {sessionToken: /\w+\.\w+\.\w+/}, {'set-cookie': /sid=\w+\.\w+\.\w+/})
+    tutil.expectResponse(response, 200, {sessionToken: /\S+\.\S+\.\S+/}, {'set-cookie': /sid=\S+\.\S+\.\S+/})
   })
 })
 
@@ -30,7 +30,7 @@ describe('POST /auth/token', () => {
     tutil.expectResponse(
       response,
       200,
-      {sessionToken: /\w+\.\w+\.\w+/},
+      {sessionToken: /\S+\.\S+\.\S+/},
       {'set-cookie': /sid=\S+\.\S+\.\S+; Path=\//, 'access-control-allow-credentials': 'true'}
     )
   })
@@ -61,7 +61,7 @@ describe('GET /auth/token', () => {
     const sessionCookie = 'sid=' + sessionToken
     const response = await server.inject(tutil.req('GET', '/auth/token', null, {cookie: sessionCookie}))
 
-    tutil.expectResponse(response, 200, {sessionToken: /\w+\.\w+\.\w+/}, {'set-cookie': /sid=\w+\.\w+\.\w+/})
+    tutil.expectResponse(response, 200, {sessionToken: /\S+\.\S+\.\S+/}, {'set-cookie': /sid=\S+\.\S+\.\S+/})
   })
 
   test('returns a 401 when the existing token is not valid', async () => {
