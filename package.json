@@ -52,6 +52,7 @@
     "glob": "^7.1.2",
     "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.10",
+    "mysql2": "^1.5.3",
     "typeorm": "^0.2.5",
     "winston": "^2.4.2"
   },
