@@ -13,12 +13,6 @@ const log = require('../../util/logger')
 
 class AuthController {
   static async register(request, reply) {
-    log.debug('Register Request.', {
-      url: request.raw.url,
-      method: request.raw.method,
-      headers: request.headers,
-      cookies: request.cookies
-    })
     const registerDto = RegisterDTO.fromRequest(request)
     const sessionToken = await serviceLocator.authService().register(registerDto)
     log.debug('Setting Response Cookie.', {
@@ -52,7 +46,7 @@ class AuthController {
   }
 
   static _setAuthenticationCookie(reply, sessionToken) {
-    reply.setCookie('sid', sessionToken, {httpOnly: false, secure: false, sameSite: false})
+    reply.setCookie('sid', sessionToken, {path: '/', httpOnly: false, secure: false, sameSite: false})
   }
 }
 

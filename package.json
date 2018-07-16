@@ -27,7 +27,7 @@
   "devDependencies": {
     "faker": "^4.1.0",
     "husky": "^1.0.0-rc.13",
-    "jest": "^22.4.3",
+    "jest": "^23.4.1",
     "nodemon": "^1.18.1",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1",
@@ -48,12 +48,10 @@
     "fastify": "^1.4.0",
     "fastify-boom": "^0.1.0",
     "fastify-cookie": "^2.0.1",
-    "fastify-register-routes": "^1.1.2",
     "fastify-swagger": "^0.12.0",
     "glob": "^7.1.2",
     "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.10",
-    "mysql2": "^1.5.3",
     "typeorm": "^0.2.5",
     "winston": "^2.4.2"
   },

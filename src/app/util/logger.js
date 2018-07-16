@@ -28,4 +28,19 @@ log.printConfig = () => {
   log.debug('Printing config.', config)
 }
 
+log.logRequest = req => {
+  log.silly('Request.', {
+    req: req.url,
+    method: req.method,
+    headers: req.headers
+  })
+}
+
+log.logResponse = res => {
+  log.silly('Response.', {
+    statusCode: res.statusCode,
+    statusMessage: res.statusMessage
+  })
+}
+
 module.exports = log

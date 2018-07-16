@@ -2,7 +2,6 @@ const faker = require('faker')
 
 const factory = require('../../tools/mocks/MockFactory')
 const tutil = require('../../tools/testUtil')
-const AuthService = require('../../../app/services/auth/AuthService')
 const server = require('../../../app/server')
 
 afterAll(tutil.closeDb)
@@ -32,7 +31,7 @@ describe('POST /auth/token', () => {
       response,
       200,
       {sessionToken: /\w+\.\w+\.\w+/},
-      {'set-cookie': /sid=\w+\.\w+\.\w+/, 'access-control-allow-credentials': 'true'}
+      {'set-cookie': /sid=\S+\.\S+\.\S+; Path=\//, 'access-control-allow-credentials': 'true', vary: 'Origin'}
     )
   })
 
