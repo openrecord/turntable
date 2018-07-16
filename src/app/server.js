@@ -1,10 +1,13 @@
 const Fastify = require('fastify')
 
+const log = require('./util/logger')
+
 /** @type {fastify.FastifyInstance} */
 const server = Fastify()
 
 // Middleware
-server.use(require('cors')())
+// Access-Control-Allow-Origin, Access-Control-Allow-Credentials
+server.use(require('cors')({credentials: true}))
 
 // Plugins
 server.register(require('fastify-swagger'), {
@@ -25,6 +28,16 @@ server.register(require('fastify-cookie'))
 // Routes
 server.register(require('./plugins/fastify-glob'), {
   routesGlob: './modules/**/*Routes.js'
+})
+
+// Logging
+server.addHook('onRequest', (req, res, next) => {
+  log.logRequest(req)
+  next()
+})
+server.addHook('onResponse', (res, next) => {
+  log.logResponse(res)
+  next()
 })
 
 /** @type {fastify.FastifyInstance} */

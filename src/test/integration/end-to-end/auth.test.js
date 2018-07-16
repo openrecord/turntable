@@ -2,7 +2,6 @@ const faker = require('faker')
 
 const factory = require('../../tools/mocks/MockFactory')
 const tutil = require('../../tools/testUtil')
-const AuthService = require('../../../app/services/auth/AuthService')
 const server = require('../../../app/server')
 
 afterAll(tutil.closeDb)
@@ -16,7 +15,7 @@ describe('POST /auth/register', () => {
       })
     )
 
-    tutil.expectResponse(response, 200, {sessionToken: /\w+\.\w+\.\w+/}, {'set-cookie': /sid=\w+\.\w+\.\w+/})
+    tutil.expectResponse(response, 200, {sessionToken: /\S+\.\S+\.\S+/}, {'set-cookie': /sid=\S+\.\S+\.\S+/})
   })
 })
 
@@ -28,7 +27,12 @@ describe('POST /auth/token', () => {
 
     const response = await server.inject(tutil.req('POST', '/auth/token', {email, password}))
 
-    tutil.expectResponse(response, 200, {sessionToken: /\w+\.\w+\.\w+/}, {'set-cookie': /sid=\w+\.\w+\.\w+/})
+    tutil.expectResponse(
+      response,
+      200,
+      {sessionToken: /\S+\.\S+\.\S+/},
+      {'set-cookie': /sid=\S+\.\S+\.\S+; Path=\//, 'access-control-allow-credentials': 'true'}
+    )
   })
 
   test('returns a 401 when the user does not exist', async () => {
@@ -57,7 +61,7 @@ describe('GET /auth/token', () => {
     const sessionCookie = 'sid=' + sessionToken
     const response = await server.inject(tutil.req('GET', '/auth/token', null, {cookie: sessionCookie}))
 
-    tutil.expectResponse(response, 200, {sessionToken: /\w+\.\w+\.\w+/}, {'set-cookie': /sid=\w+\.\w+\.\w+/})
+    tutil.expectResponse(response, 200, {sessionToken: /\S+\.\S+\.\S+/}, {'set-cookie': /sid=\S+\.\S+\.\S+/})
   })
 
   test('returns a 401 when the existing token is not valid', async () => {
