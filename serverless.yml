@@ -29,18 +29,22 @@ functions:
 package:
   exclude:
     - config/**/*local*.yml
-    - src/database/*
-    - src/test/*
-    - docker/*
+    - src/database/**
+    - src/test/**
+    - docker/**
     - .idea/**
     - .circleci/**
     - .*
-
-plugins:
-  - serverless-offline
 
 custom:
   config: ${file(./config/serverless-config.js)} # We load a javascript file here in order to leverage node-config.
   serverless-offline:
     host: 0.0.0.0
     port: ${self:custom.config.serverless.port}
+  apiCloudFront:
+    domain: ${self:custom.config.aws.domainName}
+    certificate: ${self:custom.config.aws.certificateArn}
+
+plugins:
+  - serverless-offline
+  - serverless-api-cloudfront
