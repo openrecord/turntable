@@ -33,17 +33,19 @@ If you like, you can set up prettier to format on-save within WebStorm 2018.1 or
 TODO
 
 ## Tech
- - [Serverless](https://serverless.com/)
- - [AWS Lambda] (https://aws.amazon.com/lambda)
- - [Docker](https://docs.docker.com/)
- - [Prettier](https://prettier.io/)
+
+- [Serverless](https://serverless.com/)
+- [AWS Lambda](https://aws.amazon.com/lambda)
+- [Docker](https://docs.docker.com/)
+- [Prettier](https://prettier.io/)
 
 ## TODO
 
-* [ ] Setup local development
-* [ ] Setup config
-* [ ] Write failing test
-* [ ] Setup production env
-* [ ] Configure DNS
-* [ ] Finish README
-* [ ] Create limited IAM role(s) for other users to deploy and invoke
+- [ ] Setup local development
+- [ ] Setup config
+- [ ] Write failing test
+- [ ] Setup production env
+- [ ] Configure DNS
+- [ ] Finish README
+- [ ] Create limited IAM role(s) for other users to deploy and invoke
+- [ ] Add username, unique keys for email and username
