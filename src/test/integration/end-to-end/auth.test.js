@@ -1,4 +1,5 @@
 const faker = require('faker')
+const _ = require('lodash')
 
 const factory = require('../../tools/mocks/MockFactory')
 const tutil = require('../../tools/testUtil')
@@ -10,12 +11,18 @@ describe('POST /auth/register', () => {
   test('register', async () => {
     const response = await server.inject(
       tutil.req('POST', '/auth/register', {
+        username: faker.internet.password(),
         email: faker.internet.email(),
         password: faker.internet.password()
       })
     )
 
-    tutil.expectResponse(response, 200, {sessionToken: /\S+\.\S+\.\S+/}, {'set-cookie': /sid=\S+\.\S+\.\S+/})
+    tutil.expectResponse(
+      response,
+      200,
+      {user: {email: _.isString, username: _.isString}, token: /\S+\.\S+\.\S+/},
+      {'set-cookie': /sid=\S+\.\S+\.\S+/}
+    )
   })
 })
 

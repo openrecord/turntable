@@ -1,12 +1,13 @@
 class RegisterDTO {
-  constructor(email, password) {
+  constructor(username, email, password) {
+    this.username = username
     this.email = email
     this.password = password
   }
 
   static fromRequest(request) {
-    const {email, password} = request.body
-    return new this(email, password)
+    const {username, email, password} = request.body
+    return new this(username, email, password)
   }
 
   static get schema() {
@@ -14,6 +15,7 @@ class RegisterDTO {
       body: {
         type: 'object',
         properties: {
+          username: {type: 'string'},
           email: {type: 'string'},
           password: {type: 'string'}
         },

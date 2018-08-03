@@ -16,12 +16,12 @@ class AuthService {
   /**
    * Register a new user and return JWT.
    * @param {RegisterDTO} registerDto
-   * @return {Promise<string>} - JWT containing user id.
+   * @return {Promise<{user: User, token: string}>} - Return the user and the jwt.
    */
   async register(registerDto) {
     const hashedPassword = await AuthService.hashPassword(registerDto.password)
-    const user = await this._userService.create(registerDto.email, hashedPassword)
-    return this._jwt(user)
+    const user = await this._userService.create(registerDto.username, registerDto.email, hashedPassword)
+    return {user: user, token: this._jwt(user)}
   }
 
   /**

@@ -6,12 +6,13 @@ class UserService {
   }
 
   /**
+   * @param {string} username
    * @param {string} email
    * @param {string} hashedPassword
    * @return {Promise<User>}
    */
-  async create(email, hashedPassword) {
-    return this._dao.create({email, hashedPassword})
+  async create(username, email, hashedPassword) {
+    return this._dao.create({username, email, hashedPassword})
   }
 
   /**

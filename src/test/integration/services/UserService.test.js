@@ -11,7 +11,7 @@ describe('UserService', () => {
 
   test('create', async () => {
     const dummyUser = await MockFactory.user(false)
-    const user = await userService.create(dummyUser.email, dummyUser.hashedPassword)
+    const user = await userService.create(dummyUser.username, dummyUser.email, dummyUser.hashedPassword)
 
     expect(user).toBeDefined()
     testUtil.deepCompare(user, {

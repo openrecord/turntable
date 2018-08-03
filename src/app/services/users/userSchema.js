@@ -9,8 +9,13 @@ module.exports = new typeorm.EntitySchema({
       type: 'int',
       generated: true
     },
+    username: {
+      type: 'varchar',
+      unique: true
+    },
     email: {
-      type: 'varchar'
+      type: 'varchar',
+      unique: true
     },
     hashedPassword: {
       type: 'varchar',

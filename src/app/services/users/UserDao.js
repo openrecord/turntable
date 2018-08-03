@@ -1,6 +1,3 @@
-const config = require('config')
-
-const log = require('../../util/logger')
 const User = require('./User')
 const BaseDao = require('../common/BaseDao')
 

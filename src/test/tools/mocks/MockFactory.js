@@ -19,6 +19,7 @@ class MockFactory {
     }
 
     const defaults = {
+      username: faker.internet.userName(),
       email: faker.internet.email(),
       hashedPassword: faker.internet.password()
     }
@@ -45,7 +46,7 @@ class MockFactory {
    * @return {RegisterDTO}
    */
   static registerDto() {
-    return new RegisterDTO(faker.internet.email(), faker.internet.password())
+    return new RegisterDTO(faker.internet.userName(), faker.internet.email(), faker.internet.password())
   }
 
   /**

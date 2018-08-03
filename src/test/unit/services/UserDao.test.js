@@ -17,6 +17,7 @@ describe('UserDao', () => {
 
     assert.notEqual(user, null)
     assert.equal(user.email, dummyUser.email)
+    assert.equal(user.username, dummyUser.username)
     assert.equal(user.hashedPassword, dummyUser.hashedPassword)
   })
 })

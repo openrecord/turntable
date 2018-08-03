@@ -14,12 +14,12 @@ const log = require('../../util/logger')
 class AuthController {
   static async register(request, reply) {
     const registerDto = RegisterDTO.fromRequest(request)
-    const sessionToken = await serviceLocator.authService().register(registerDto)
+    const {user, token} = await serviceLocator.authService().register(registerDto)
     log.debug('Setting Response Cookie.', {
-      sessionToken
+      token
     })
-    AuthController._setAuthenticationCookie(reply, sessionToken)
-    return {sessionToken}
+    AuthController._setAuthenticationCookie(reply, token)
+    return {user, token}
   }
 
   static async login(request, reply) {
