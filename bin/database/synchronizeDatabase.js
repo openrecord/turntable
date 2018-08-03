@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const ENV = process.env.NODE_ENV
+const ENV = process.env.NODE_ENV || 'dev'
 const FORCE = ['-f', '--force'].includes(process.argv[2])
 
 if (!['test', 'dev'].includes(ENV) && !FORCE) {
