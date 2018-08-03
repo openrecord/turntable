@@ -17,7 +17,7 @@ functions:
       - http: ANY /
       - http: ANY {proxy+}
     environment:
-      NODE_ENV: ${self:provider.stage}
+      NODE_ENV: ${opt:stage}
       DB_USERNAME: ${self:custom.config.db.username}
       DB_PASSWORD: ${self:custom.config.db.password}
       DB_HOST: ${self:custom.config.db.host}
@@ -28,7 +28,7 @@ functions:
 
 package:
   exclude:
-    - config/**/*local*.yml
+    - config/**/local.yml
     - src/database/**
     - src/test/**
     - docker/**

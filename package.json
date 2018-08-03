@@ -12,7 +12,7 @@
     "db:create": "bash bin/database/setup_database.sh",
     "db:sync": "node bin/database/synchronizeDatabase",
     "docker:push": "docker/turntable/build_tag_push.sh",
-    "deploy:staging": "serverless deploy -s staging",
+    "deploy:staging": "AWS_PROFILE=turntable serverless deploy -s staging",
     "deploy:docker": "bin/deploy_with_docker.sh"
   },
   "repository": {
