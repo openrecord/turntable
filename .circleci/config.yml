@@ -61,13 +61,12 @@ jobs:
           destination: coverage
 
   build-docker:
+    branches:
+        only: [master]
     docker:
       - image: docker:17.05.0-ce-git
-
     steps:
       - checkout
       - setup_remote_docker
-      - run: |
-          if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            docker/api/build_tag_push.sh
-          fi
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run: docker/api/build_tag_push.sh
