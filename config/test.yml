@@ -1,5 +1,5 @@
----
 db:
-  username: unittest
-  password: dfsoio90fv0$dd
-  database: openrecord_test
+  write:
+    user: unittest
+    password: dfsoio90fv0$dd
+    database: openrecord_test

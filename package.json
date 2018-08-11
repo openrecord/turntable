@@ -12,7 +12,8 @@
     "db:sync:test": "NODE_ENV=test node bin/database/synchronizeDatabase",
     "docker:push": "docker/turntable/build_tag_push.sh",
     "deploy:staging": "serverless deploy -s staging",
-    "deploy:docker": "bin/deploy_with_docker.sh"
+    "deploy:docker": "bin/deploy_with_docker.sh",
+    "init": "bash bin/init.sh"
   },
   "repository": {
     "type": "git",
@@ -68,7 +69,8 @@
     }
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "globalSetup": "./src/test/setup"
   },
   "jest-junit": {
     "output": "test-reports/junit.xml"
