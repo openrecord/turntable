@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const config = require('config')
-const mysql = require('mysql2')
+const mysql = require('mysql2/promise')
 const fs = require('fs')
 const path = require('path')
 
@@ -22,10 +22,10 @@ if (ENV !== 'dev' || FORCE) {
 setup()
 
 async function setup() {
-  const conn = connect()
+  const conn = await connect()
   try {
     const sql = getMysqlScript()
-    await conn.promise().query(sql)
+    await conn.query(sql)
     await conn.end()
   } catch (err) {
     console.error(`Could not initialize database. [${err.message}]`)
@@ -33,7 +33,7 @@ async function setup() {
   }
 }
 
-function connect() {
+async function connect() {
   console.info('Connecting to setup database.')
   return mysql.createConnection(config.db.setup)
 }
