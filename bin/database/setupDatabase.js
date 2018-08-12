@@ -24,8 +24,9 @@ setup()
 async function setup() {
   const conn = connect()
   try {
-    await executeMysqlScript(conn)
-    conn.end()
+    const sql = getMysqlScript()
+    await conn.promise().query(sql)
+    await conn.end()
   } catch (err) {
     console.error(`Could not initialize database. [${err.message}]`)
     process.exit(1)
@@ -37,12 +38,8 @@ function connect() {
   return mysql.createConnection(config.db.setup)
 }
 
-function executeMysqlScript(connection) {
-  const sqlFile = getMysqlScript()
-  console.info(`Executing mysql script: ${path.basename(sqlFile)}`)
-  return fs.readFileSync(sqlFile, 'utf8')
-}
-
 function getMysqlScript() {
-  return path.join(__dirname, `setup_database.${ENV}.sql`)
+  const sqlFile = path.join(__dirname, `setup_database.${ENV}.sql`)
+  console.info(`Reading mysql script: ${path.basename(sqlFile)}`)
+  return fs.readFileSync(sqlFile, 'utf8')
 }
