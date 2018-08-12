@@ -12,7 +12,8 @@
     "db:sync": "bin/database/synchronizeDatabase.js",
     "docker:push": "docker/turntable/build_tag_push.sh",
     "deploy:staging": "serverless deploy -s staging",
-    "deploy:docker": "bin/deploy_with_docker.sh"
+    "deploy:docker": "bin/deploy_with_docker.sh",
+    "init": "npm run -s db:setup && npm run -s db:sync"
   },
   "repository": {
     "type": "git",
