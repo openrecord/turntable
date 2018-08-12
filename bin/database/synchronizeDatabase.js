@@ -10,4 +10,7 @@ if (!environments.includes(process.env.NODE_ENV)) {
   process.exit(1)
 }
 
-db.sync(FORCE)
+db.sync(FORCE).catch(err => {
+  console.error(`Error synchronizing database. [${err.message}]`)
+  process.exit(1)
+})

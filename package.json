@@ -8,12 +8,11 @@
     "test:unit": "NODE_ENV=test jest 'src/test/unit'",
     "test:integration": "NODE_ENV=test jest 'src/test/integration'",
     "test:circleci": "npm run -s test -- --ci --coverage",
-    "db:setup:dev": "bash bin/database/setup_database.sh",
-    "db:sync:test": "NODE_ENV=test node bin/database/synchronizeDatabase",
+    "db:setup": "bin/database/setupDatabase.js",
+    "db:sync": "bin/database/synchronizeDatabase.js",
     "docker:push": "docker/turntable/build_tag_push.sh",
     "deploy:staging": "serverless deploy -s staging",
-    "deploy:docker": "bin/deploy_with_docker.sh",
-    "init": "bash bin/init.sh"
+    "deploy:docker": "bin/deploy_with_docker.sh"
   },
   "repository": {
     "type": "git",

@@ -35,7 +35,7 @@ jobs:
 
       - run:
           name: Setup database.
-          command: npm run -s init
+          command: npm run -s db:setup
 
       - run:
           name: Run all tests.

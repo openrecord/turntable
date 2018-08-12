@@ -28,6 +28,7 @@ async function setup() {
     conn.end()
   } catch (err) {
     console.error(`Could not initialize database. [${err.message}]`)
+    process.exit(1)
   }
 }
 
