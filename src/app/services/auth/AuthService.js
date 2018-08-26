@@ -8,7 +8,7 @@ const serviceLocator = require('../serviceLocator')
 const SECRET = config.auth.jwtSecret
 const ONE_WEEK = 604800 // One week in minutes
 
-class AuthService {
+export class AuthService {
   constructor() {
     this._userService = serviceLocator.userService()
   }
@@ -92,5 +92,3 @@ class AuthService {
     })
   }
 }
-
-module.exports = AuthService

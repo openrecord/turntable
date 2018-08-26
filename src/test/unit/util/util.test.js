@@ -2,11 +2,6 @@ const assert = require('assert')
 const util = require('../../../app/util/util')
 
 describe('util', () => {
-  test('uuidv4', () => {
-    const uuid = util.uuidv4()
-    assert.ok(uuid.match(/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/))
-  })
-
   test('deepWalk', async function() {
     const objectToTraverse = {
       a: {

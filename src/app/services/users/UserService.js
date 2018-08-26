@@ -1,4 +1,4 @@
-const serviceLocator = require('../serviceLocator')
+const serviceLocator = require('../serviceLocator.ts')
 
 class UserService {
   constructor() {

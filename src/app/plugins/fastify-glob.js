@@ -15,7 +15,7 @@ module.exports = function(fastify, opts, next) {
 
   glob.sync(pattern).forEach(routeFile => {
     const modulePath = './' + path.relative(__dirname, routeFile)
-    const routes = require(modulePath)
+    const routes = require(modulePath).default
     routes.forEach(route => fastify.route(route))
   })
 

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "lib": ["esnext", "dom"],
+    "types": ["reflect-metadata"],
+    "outDir": "./built/app",
+    "allowJs": true,
+    "target": "es5",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "include": ["./src/app/**/*"]
+}
