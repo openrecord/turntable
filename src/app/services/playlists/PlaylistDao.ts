@@ -1,6 +1,6 @@
 import {injectable} from 'inversify'
-import BaseDao from '../common/BaseDao'
 import {Playlist} from './Playlist.schema'
+import {BaseDao} from '../common/BaseDao'
 
 @injectable()
 export class PlaylistDao extends BaseDao<Playlist> {

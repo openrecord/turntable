@@ -1,6 +1,8 @@
 import {LoginDTO} from './dtos/LoginDTO'
 import {RegisterDTO} from './dtos/RegisterDTO'
 import {AuthController} from './AuthController'
+import {AuthService} from '../../services/auth/AuthService'
+import {bindDependencies} from '../../dependencies/utils'
 
 export default [
   {
@@ -13,11 +15,11 @@ export default [
     method: 'POST',
     path: '/auth/token',
     schema: LoginDTO.schema,
-    handler: AuthController.login
+    handler: bindDependencies(AuthController.login, AuthService)
   },
   {
     method: 'GET',
     path: '/auth/token',
-    handler: AuthController.refresh
+    handler: bindDependencies(AuthController.refresh, AuthService)
   }
 ]

@@ -5,7 +5,7 @@ import {Repository} from 'typeorm'
 export interface Dao<T> {
   create(obj: Partial<T>): Promise<T>
   findAll(filters: Partial<T>): Promise<T[]>
-  findOne(filters: Partial<T>): Promise<T[]>
+  findOne(filters: Partial<T>): Promise<T>
 }
 
 interface EntityConstructor<T> {
@@ -13,7 +13,7 @@ interface EntityConstructor<T> {
 }
 
 @injectable()
-export default abstract class BaseDao<T> implements Dao<T> {
+export abstract class BaseDao<T> implements Dao<T> {
   abstract entityClass: EntityConstructor<T>
 
   async create(obj) {

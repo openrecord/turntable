@@ -1,17 +1,17 @@
-const config = require('config')
-const argon2 = require('argon2')
-const jwt = require('jsonwebtoken')
-
-const log = require('../../util/logger')
-const serviceLocator = require('../serviceLocator')
+import {TYPES} from '../../dependencies/types'
+import {injectable, inject} from 'inversify'
+import config from 'config'
+import * as argon2 from 'argon2'
+import * as jwt from 'jsonwebtoken'
+import {UserService} from '../users/UserService'
 
 const SECRET = config.auth.jwtSecret
 const ONE_WEEK = 604800 // One week in minutes
 
+@injectable()
 export class AuthService {
-  constructor() {
-    this._userService = serviceLocator.userService()
-  }
+  @inject(TYPES.UserService)
+  private userService: UserService
 
   /**
    * Register a new user and return JWT.
@@ -20,8 +20,8 @@ export class AuthService {
    */
   async register(registerDto) {
     const hashedPassword = await AuthService.hashPassword(registerDto.password)
-    const user = await this._userService.create(registerDto.email, hashedPassword)
-    return this._jwt(user)
+    const user = await this.userService.create(registerDto.email, hashedPassword)
+    return this.jwt(user)
   }
 
   /**
@@ -30,7 +30,7 @@ export class AuthService {
    * @return {Promise<string>} - JWT containing user id.
    */
   async login(loginDto) {
-    const user = await this._userService.getByEmail(loginDto.email)
+    const user = await this.userService.getByEmail(loginDto.email)
     if (!user) {
       throw new Error('Could not find user by email.')
     }
@@ -40,7 +40,7 @@ export class AuthService {
       throw new Error('User password does not match.')
     }
 
-    return this._jwt(user)
+    return this.jwt(user)
   }
 
   /**
@@ -50,12 +50,12 @@ export class AuthService {
    */
   async refresh(token) {
     const {userId} = await AuthService.decodeToken(token)
-    const user = await this._userService.getById(userId)
+    const user = await this.userService.getById(userId)
     if (!user) {
       throw new Error('Could not find user by id.')
     }
 
-    return this._jwt(user)
+    return this.jwt(user)
   }
 
   /**
@@ -86,7 +86,7 @@ export class AuthService {
    * @return {string} - JWT containing user id.
    * @private
    */
-  _jwt(user, expMins = ONE_WEEK) {
+  private jwt(user, expMins = ONE_WEEK) {
     return jwt.sign({userId: user.id}, SECRET, {
       expiresIn: expMins + 'm'
     })
