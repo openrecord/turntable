@@ -1,9 +1,5 @@
-import {injectable, inject} from 'inversify'
 import {CreatePlaylistDTO} from './dtos/CreatePlaylistDTO'
-import serviceLocator from '../../services/serviceLocator'
-import {container} from '../../dependencies/inversify.config'
 import {PlaylistService} from '../../services/playlists/PlaylistService'
-import {TYPES} from '../../dependencies/types'
 
 export const PlaylistController = {
   async create(playlistService: PlaylistService, request, reply) {
