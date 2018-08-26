@@ -1,5 +1,5 @@
-const assert = require('assert')
-const util = require('../../../app/util/util')
+import * as assert from 'assert'
+import * as util from '../../../app/util/util'
 
 describe('util', () => {
   test('deepWalk', async function() {
