@@ -1,0 +1,112 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": [
+        "lambda:CreateFunction",
+        "cloudformation:PreviewStackUpdate",
+        "s3:ListAllMyBuckets",
+        "logs:DescribeLogGroups",
+        "lambda:List*",
+        "logs:DescribeLogStreams",
+        "lambda:Get*",
+        "logs:FilterLogEvents",
+        "cloudwatch:GetMetricStatistics",
+        "cloudformation:List*",
+        "cloudformation:ValidateTemplate",
+        "cloudformation:Get*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "VisualEditor1",
+      "Effect": "Allow",
+      "Action": [
+        "logs:DeleteLogGroup",
+        "apigateway:PUT",
+        "lambda:InvokeFunction",
+        "s3:ListBucketVersions",
+        "s3:CreateBucket",
+        "s3:ListBucket",
+        "apigateway:DELETE",
+        "iam:PassRole",
+        "logs:CreateLogStream",
+        "events:Delete*",
+        "lambda:AddPermission",
+        "cloudformation:CreateStack",
+        "cloudformation:DeleteStack",
+        "cloudformation:UpdateStack",
+        "lambda:DeleteFunction",
+        "lambda:PublishVersion",
+        "apigateway:POST",
+        "apigateway:GET",
+        "s3:DeleteBucket",
+        "lambda:RemovePermission",
+        "lambda:CreateAlias"
+      ],
+      "Resource": [
+        "arn:aws:iam::*:role/*",
+        "arn:aws:s3:::openrecord-turntable",
+        "arn:aws:logs:*:*:*",
+        "arn:aws:cloudformation:*:*:stack/openrecord-turntable-*/*",
+        "arn:aws:apigateway:*::/restapis*",
+        "arn:aws:lambda:*:*:function:openrecord-turntable-*-*",
+        "arn:aws:events:*:*:rule/openrecord-turntable-*-*"
+      ]
+    },
+    {
+      "Sid": "VisualEditor2",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "iam:GetRole",
+        "iam:DeleteRolePolicy",
+        "iam:CreateRole",
+        "iam:DeleteRole",
+        "iam:PutRolePolicy",
+        "s3:DeleteObject",
+        "logs:PutLogEvents"
+      ],
+      "Resource": ["arn:aws:s3:::openrecord-turntable/*", "arn:aws:iam::*:role/openrecord-turntable-*-*-lambdaRole", "arn:aws:logs:*:*:*"]
+    },
+    {
+      "Sid": "VisualEditor3",
+      "Effect": "Allow",
+      "Action": ["cloudformation:CreateUploadBucket", "cloudformation:Describe*"],
+      "Resource": "arn:aws:cloudformation:*:*:stack/openrecord-turntable-*/*"
+    },
+    {
+      "Sid": "VisualEditor4",
+      "Effect": "Allow",
+      "Action": "lambda:Update*",
+      "Resource": "arn:aws:lambda:*:*:function:openrecord-turntable-*-*"
+    },
+    {
+      "Sid": "VisualEditor5",
+      "Effect": "Allow",
+      "Action": "kinesis:*",
+      "Resource": "arn:aws:kinesis:*:*:stream/openrecord-turntable-*-*"
+    },
+    {
+      "Sid": "VisualEditor6",
+      "Effect": "Allow",
+      "Action": "sqs:*",
+      "Resource": "arn:aws:sqs:*:*:openrecord-turntable-*-*"
+    },
+    {
+      "Sid": "VisualEditor7",
+      "Effect": "Allow",
+      "Action": "logs:CreateLogGroup",
+      "Resource": "arn:aws:logs:*:*:*"
+    },
+    {
+      "Sid": "VisualEditor8",
+      "Effect": "Allow",
+      "Action": ["events:Put*", "events:Remove*"],
+      "Resource": "arn:aws:events:*:*:rule/openrecord-turntable-*-*"
+    }
+  ]
+}

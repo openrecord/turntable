@@ -7,7 +7,7 @@ provider:
   runtime: nodejs8.10
   region: us-east-1
   deploymentBucket:
-    name: openrecord-api
+    name: openrecord-turntable
 
 functions:
   proxy:
