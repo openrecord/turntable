@@ -27,3 +27,7 @@ module.exports.deepWalk = (object, fn) => {
     }
   }
 }
+
+module.exports.isDevEnvironment = () => {
+  return ['test', 'dev', undefined].includes(process.env.NODE_ENV)
+}

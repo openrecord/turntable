@@ -1,13 +1,13 @@
----
 serverless:
   port: PORT
 
 db:
-  username: DB_USERNAME
-  password: DB_PASSWORD
-  host: DB_HOST
-  port: DB_PORT
-  synchronize: DB_SYNCHRONIZE
+  write:
+    user: DB_USERNAME
+    password: DB_PASSWORD
+    host: DB_HOST
+    port: DB_PORT
+    synchronize: DB_SYNCHRONIZE
 
 log:
   level: LOG_LEVEL

@@ -8,11 +8,12 @@
     "test:unit": "NODE_ENV=test jest 'src/test/unit'",
     "test:integration": "NODE_ENV=test jest 'src/test/integration'",
     "test:circleci": "npm run -s test -- --ci --coverage",
-    "db:setup:dev": "bash bin/database/setup_database.sh",
-    "db:sync:test": "NODE_ENV=test node bin/database/synchronizeDatabase",
+    "db:setup": "bin/database/setupDatabase.js",
+    "db:sync": "bin/database/synchronizeDatabase.js",
     "docker:push": "docker/turntable/build_tag_push.sh",
     "deploy:staging": "serverless deploy -s staging",
-    "deploy:docker": "bin/deploy_with_docker.sh"
+    "deploy:docker": "bin/deploy_with_docker.sh",
+    "init": "npm run -s db:setup && npm run -s db:sync"
   },
   "repository": {
     "type": "git",
@@ -52,7 +53,7 @@
     "glob": "^7.1.2",
     "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.10",
-    "mysql2": "^1.5.3",
+    "mysql2": "^1.6.1",
     "serverless-api-cloudfront": "^0.9.4",
     "typeorm": "^0.2.5",
     "winston": "^2.4.2"
@@ -68,7 +69,8 @@
     }
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "globalSetup": "./src/test/setup"
   },
   "jest-junit": {
     "output": "test-reports/junit.xml"

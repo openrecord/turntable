@@ -1,20 +1,16 @@
 #!/usr/bin/env node
 
-const ENV = process.env.NODE_ENV
+const db = require('../../src/app/services/database')
+
 const FORCE = ['-f', '--force'].includes(process.argv[2])
 
-if (!['test', 'dev'].includes(ENV) && !FORCE) {
-  console.error('Can only synchronize test or development databases.')
+const environments = ['prod', 'staging', 'dev', undefined]
+if (!environments.includes(process.env.NODE_ENV)) {
+  console.error(`NODE_ENV must be one of: ${environments.join(',')}`)
   process.exit(1)
 }
 
-const {connect} = require('../../src/app/services/database/index')
-
-async function sync() {
-  const conn = await connect()
-  await conn.synchronize()
-  await conn.close()
-}
-
-console.info('Synchronizing database: ' + ENV)
-sync()
+db.sync(FORCE).catch(err => {
+  console.error(`Error synchronizing database. [${err.message}]`)
+  process.exit(1)
+})
