@@ -1,4 +1,4 @@
-const path = require('path')
+import * as path from 'path'
 
 /**
  * Setup path to config folder for lambda.
@@ -15,6 +15,4 @@ function configurePathForLambda() {
 
 configurePathForLambda()
 
-module.exports = {
-  proxy: require('./functions/proxy')
-}
+export {proxy} from './functions/proxy'

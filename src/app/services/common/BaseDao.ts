@@ -1,6 +1,21 @@
-const {connect} = require('../database')
+import {injectable} from 'inversify'
+import {connect} from '../database'
+import {Repository} from 'typeorm'
 
-class BaseDao {
+export interface Dao<T> {
+  create(obj: Partial<T>): Promise<T>
+  findAll(filters: Partial<T>): Promise<T[]>
+  findOne(filters: Partial<T>): Promise<T>
+}
+
+interface EntityConstructor<T> {
+  new (): T
+}
+
+@injectable()
+export abstract class BaseDao<T> implements Dao<T> {
+  abstract entityClass: EntityConstructor<T>
+
   async create(obj) {
     const repo = await this._repo()
     const result = await repo.save(obj)
@@ -25,17 +40,12 @@ class BaseDao {
    */
   async _repo() {
     const conn = await this.conn()
-    const Entity = this.entityClass()
-    return conn.getRepository(Entity)
+    const Entity = this.entityClass
+    return conn.getRepository(this.entityClass)
   }
 
   /**
-   * @returns {Class}
-   * @abstract
-   */
-  entityClass() {}
-
-  /**
+   *
    * Get the TypeORM connection.
    * @return {Promise<Connection>}
    */
@@ -43,5 +53,3 @@ class BaseDao {
     return connect()
   }
 }
-
-module.exports = BaseDao

@@ -1,8 +1,8 @@
-const RequestFactory = require('../modules/common/RequestFactory')
-const db = require('../services/database')
-const server = require('../server')
+import RequestFactory from '../modules/common/RequestFactory'
+import * as db from '../services/database'
+import {server} from '../server'
 
-module.exports = async (event, context, callback) => {
+export const proxy = async (event, context, callback) => {
   const request = RequestFactory.fromLambdaEvent(event)
   const response = await server.inject(request)
 

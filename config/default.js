@@ -6,7 +6,7 @@
 // https://github.com/lorenwest/node-config/wiki/Special-features-for-JavaScript-configuration-files
 
 // If jest is running without NODE_ENV, set NODE_ENV="test".
-const isJest = process.argv[1].match(/jest/)
+const isJest = process.argv[1] && process.argv[1].match(/jest/)
 if (isJest && !process.env.NODE_ENV) {
   console.log('Overriding NODE_ENV to "test"')
   process.env.NODE_ENV = 'test'

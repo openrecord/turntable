@@ -57,6 +57,4 @@ class ServiceLocator {
     return this[serviceKey]
   }
 }
-
-const instance = new ServiceLocator()
-module.exports = instance
+export default new ServiceLocator()

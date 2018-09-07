@@ -1,8 +1,8 @@
-const HealthCheckController = require('./HealthCheckController')
+import {HealthCheckController} from './HealthCheckController'
 
 //TODO: schemas: https://www.fastify.io/docs/v1.4.x/Validation-and-Serialization/
 
-module.exports = [
+export default [
   {
     method: 'GET',
     path: '/healthcheck',
