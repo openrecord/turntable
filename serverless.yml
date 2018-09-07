@@ -6,8 +6,6 @@ provider:
   name: aws
   runtime: nodejs8.10
   region: us-east-1
-  deploymentBucket:
-    name: openrecord-turntable
 
 functions:
   proxy:
