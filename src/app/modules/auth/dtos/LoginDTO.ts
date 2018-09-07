@@ -1,5 +1,8 @@
-class LoginDTO {
-  constructor(email, password) {
+export class LoginDTO {
+  email: string
+  password: string
+
+  constructor(email: string, password: string) {
     this.email = email
     this.password = password
   }
@@ -22,5 +25,3 @@ class LoginDTO {
     }
   }
 }
-
-module.exports = LoginDTO

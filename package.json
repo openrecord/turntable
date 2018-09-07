@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Backend for the openrecord platform.",
   "scripts": {
-    "start": "serverless offline",
+    "start": "npm run compile && serverless offline",
     "test": "NODE_ENV=test jest 'src/test/unit|src/test/integration'",
     "test:unit": "NODE_ENV=test jest 'src/test/unit'",
     "test:integration": "NODE_ENV=test jest 'src/test/integration'",
@@ -13,7 +13,9 @@
     "docker:push": "docker/turntable/build_tag_push.sh",
     "deploy:staging": "serverless deploy -s staging",
     "deploy:docker": "bin/deploy_with_docker.sh",
-    "init": "npm run -s db:setup && npm run -s db:sync"
+    "init": "npm run -s db:setup && npm run -s db:sync",
+    "compile": "tsc",
+    "dev": "nodemon -e ts"
   },
   "repository": {
     "type": "git",
@@ -26,15 +28,23 @@
   },
   "homepage": "https://github.com/openrecord/turntable#readme",
   "devDependencies": {
+    "@types/jest": "^23.3.1",
+    "@types/node": "^10.9.1",
     "faker": "^4.1.0",
     "husky": "^1.0.0-rc.13",
+    "inversify": "^4.13.0",
     "jest": "^23.4.1",
     "nodemon": "^1.18.1",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1",
+    "reflect-metadata": "^0.1.12",
     "serverless": "1.27.3",
     "serverless-offline": "^3.21.1",
-    "testdouble": "^3.8.1"
+    "testdouble": "^3.8.1",
+    "ts-jest": "^23.1.4",
+    "typescript": "^3.0.1",
+    "typescript-cli": "^0.1.0",
+    "uuid": "^3.3.2"
   },
   "husky": {
     "hooks": {
@@ -64,13 +74,23 @@
       "src"
     ],
     "execMap": {
+      "ts": "npm start",
       "js": "npm start",
       "yml": "npm start"
     }
   },
   "jest": {
-    "testEnvironment": "node",
-    "globalSetup": "./src/test/setup"
+    "globalSetup": "./built/test/setup.js",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "tsx",
+      "jsx"
+    ]
   },
   "jest-junit": {
     "output": "test-reports/junit.xml"

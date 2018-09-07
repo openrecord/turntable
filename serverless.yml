@@ -11,7 +11,7 @@ provider:
 
 functions:
   proxy:
-    handler: src/app/functions.proxy
+    handler: built/app/functions.proxy
     description: Proxies an incoming API Gateway request to the node app.
     events:
       - http: ANY /
@@ -29,7 +29,7 @@ functions:
 package:
   exclude:
     - config/**/*local*.yml
-    - src/database/**
+    - built/database/**
     - src/test/**
     - docker/**
     - .idea/**

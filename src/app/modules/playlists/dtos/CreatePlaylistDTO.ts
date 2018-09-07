@@ -1,4 +1,6 @@
-class CreatePlaylistDTO {
+export class CreatePlaylistDTO {
+  name: string
+
   constructor(name) {
     this.name = name
   }
@@ -13,12 +15,12 @@ class CreatePlaylistDTO {
       body: {
         type: 'object',
         properties: {
-          name: {type: 'string'}
+          name: {
+            type: 'string'
+          }
         },
         required: ['name']
       }
     }
   }
 }
-
-module.exports = CreatePlaylistDTO

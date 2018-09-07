@@ -1,9 +1,9 @@
-const Fastify = require('fastify')
+import * as Fastify from 'fastify'
 
-const log = require('./util/logger')
+import {log} from './util/logger'
 
 /** @type {fastify.FastifyInstance} */
-const server = Fastify()
+export const server = Fastify()
 
 // Middleware
 // Access-Control-Allow-Origin, Access-Control-Allow-Credentials
@@ -39,6 +39,3 @@ server.addHook('onResponse', (res, next) => {
   log.logResponse(res)
   next()
 })
-
-/** @type {fastify.FastifyInstance} */
-module.exports = server
