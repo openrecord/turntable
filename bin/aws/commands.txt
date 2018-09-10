@@ -1,9 +1,12 @@
 # Cloudformation
 
+# Create cloudformation stack for the serverless deploy user.
 env AWS_PROFILE=chas-aws aws cloudformation create-stack \
  --capabilities CAPABILITY_NAMED_IAM \
- --template-body file://serverless-deploy-user-cf.yml \
- --stack-name serverless-deploy-openrecord-staging \
- --parameters ParameterKey=UserName,ParameterValue=serverless-deploy-openrecord ParameterKey=Service,ParameterValue=openrecord-turntable ParameterKey=Stage,ParameterValue=staging \
+ --template-body file://bin/aws/serverless-deploy-user-cf.yml \
+ --stack-name turntable-deploy-openrecord-staging \
+ --parameters ParameterKey=ServiceName,ParameterValue=openrecord
 
-env AWS_PROFILE=serverless-deploy-openrecord npx sls deploy -s staging
+env AWS_PROFILE=turntable-deploy npx sls deploy -s staging
+
+

@@ -1,6 +1,6 @@
 # docs.serverless.com
 
-service: openrecord-turntable
+service: openrecord
 
 provider:
   name: aws
