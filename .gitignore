@@ -16,3 +16,4 @@ config/**/*local*.yml
 # Test output
 test-reports
 coverage
+_old/

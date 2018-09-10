@@ -1,0 +1,22 @@
+type User {
+  id: ID! @unique
+  name: String!
+}
+
+enum TrackSource {
+  YOUTUBE
+  SOUNDCLOUD
+}
+
+type Track {
+  id: ID! @unique
+  url: String!
+  source: TrackSource!
+  playlist: Playlist!
+}
+
+type Playlist {
+  id: ID! @unique
+  name: String! @unique
+  tracks: [Track!]!
+}

@@ -1,0 +1,2 @@
+endpoint: https://us1.prisma.sh/jamesscottmcnamara/turntable/dev
+datamodel: datamodel.graphql
