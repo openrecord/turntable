@@ -4,7 +4,7 @@ const _ = require('lodash')
 const CreatePlaylistDTO = require('../../../app/modules/playlists/dtos/CreatePlaylistDTO')
 const RegisterDTO = require('../../../app/modules/auth/dtos/RegisterDTO')
 const AuthService = require('../../../app/services/auth/AuthService')
-const User = require('../../../app/services/users/User')
+const User = require('../../../app/services/users/User.schema')
 
 class MockFactory {
   /**

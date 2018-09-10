@@ -1,4 +1,4 @@
-const config = require('config')
+import * as config from 'config'
 import * as path from 'path'
 import {createConnection} from 'typeorm'
 

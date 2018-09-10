@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
     "lib": ["esnext", "dom"],
-    "types": ["reflect-metadata"],
+    "types": ["node", "reflect-metadata"],
     "outDir": "./built",
     "allowJs": true,
-    "target": "es5",
+    "target": "es6",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
   },
-  "include": ["./src/**/*", "node_modules/@types"]
+  "include": ["./src/**/*"]
 }

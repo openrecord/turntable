@@ -1,6 +1,6 @@
 import {TYPES} from '../../dependencies/types'
 import {injectable, inject} from 'inversify'
-import config from 'config'
+import * as config from 'config'
 import * as argon2 from 'argon2'
 import * as jwt from 'jsonwebtoken'
 import {UserService} from '../users/UserService'

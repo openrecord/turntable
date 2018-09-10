@@ -42,6 +42,7 @@
     "serverless-offline": "^3.21.1",
     "testdouble": "^3.8.1",
     "ts-jest": "^23.1.4",
+    "ts-node": "^7.0.1",
     "typescript": "^3.0.1",
     "typescript-cli": "^0.1.0",
     "uuid": "^3.3.2"
@@ -80,8 +81,8 @@
     }
   },
   "jest": {
-    "globalSetup": "./built/test/setup.js",
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
+    "globalSetup": "./src/test/global_setup_hook.js",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|js)$",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
