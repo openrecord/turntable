@@ -16,3 +16,6 @@ config/**/*local*.yml
 # Test output
 test-reports
 coverage
+
+# Typescript
+built
