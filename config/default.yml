@@ -1,15 +1,22 @@
----
 serverless:
   port: 7001
 
 db:
-  username: dev
-  password: anByU=9c77?cD26k
-  host: 0.0.0.0
-  port: 3306
-  logging: false
-  database: openrecord
-  synchronize: false
+  write:
+    host: 0.0.0.0
+    port: 3306
+    user: dev
+    password: anByU=9c77?cD26k
+    logging: false
+    database: openrecord
+    synchronize: false
+  setup:
+    host: 0.0.0.0
+    port: 3306
+    user: root
+    password: password
+    database: mysql
+    multipleStatements: true
 
 log:
   level: info
@@ -21,8 +28,8 @@ aws:
   region: us-east-1
   securityGroupIds: []
   subnetIds: []
-  domainName:
-  certificateArn:
+  ? domainName
+  ? certificateArn
 
 auth:
   jwtSecret: shhh
