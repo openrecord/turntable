@@ -17,3 +17,11 @@ config/**/*local*.yml
 test-reports
 coverage
 _old/
+
+# Auto generated
+built/
+generated/
+schema.graphql
+
+# env files
+.*.env

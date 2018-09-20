@@ -1,2 +1,2 @@
-endpoint: https://us1.prisma.sh/jamesscottmcnamara/turntable/dev
+endpoint: ${env:ENDPOINT}
 datamodel: datamodel.graphql
