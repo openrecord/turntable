@@ -4,6 +4,7 @@
   "description": "Backend for OpenRecord",
   "main": "index.js",
   "scripts": {
+    "start": "docker-compose up -d && npm run deploy:dev",
     "deploy:dev": "prisma deploy -e .dev.env",
     "deploy:prod": "prisma deploy -e .prod.env",
     "codegen": "gql get-schema && gql codegen"
@@ -20,7 +21,7 @@
   "homepage": "https://github.com/openrecord/turntable#readme",
   "dependencies": {
     "graphql-cli": "^2.16.7",
-    "prisma": "^1.16.4",
+    "prisma": "^1.16.5",
     "prisma-binding": "^2.1.6",
     "typescript": "^3.0.3"
   },
