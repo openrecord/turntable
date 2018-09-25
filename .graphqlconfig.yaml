@@ -1,0 +1,11 @@
+projects:
+  turntable:
+    schemaPath: schema.graphql
+    extensions:
+      endpoints:
+        default: "http://localhost:4466/"
+      codegen:
+        - generator: prisma-binding
+          language: typescript
+          output:
+            binding: generated/prisma.ts

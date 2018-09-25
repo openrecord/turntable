@@ -16,6 +16,12 @@ config/**/*local*.yml
 # Test output
 test-reports
 coverage
+_old/
 
-# Typescript
-built
+# Auto generated
+built/
+generated/
+schema.graphql
+
+# env files
+.*.env

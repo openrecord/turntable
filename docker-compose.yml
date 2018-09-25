@@ -1,23 +1,29 @@
-version: '3'
+version: "3"
 services:
-  api:
-    image: openrecord/turntable
-    build:
-      context: .
-      dockerfile: docker/api/Dockerfile
+  prisma:
+    image: prismagraphql/prisma:1.15
+    restart: always
     ports:
-      - 7001:7001
-    volumes:
-      - ./src:/app/src
-    depends_on:
-      - mysql
-    command: node_modules/.bin/nodemon
-
-  mysql:
-    image: mysql:5.7
-    volumes:
-      - ./docker/mysql/mount:/var/lib/mysql
+      - "4466:4466"
     environment:
-      MYSQL_ROOT_PASSWORD: password
-    ports:
-      - 3306:3306
+      PRISMA_CONFIG: |
+        port: 4466
+        # managementApiSecret: asdfasdjkl;asdfklj1234345asfsldjf12354
+        databases:
+          default:
+            connector: postgres
+            host: postgres
+            port: 5432
+            user: prisma
+            password: prisma
+            migrations: true
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+    volumes:
+      - postgres:/var/lib/postgresql/data
+volumes:
+  ? postgres

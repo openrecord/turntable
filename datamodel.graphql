@@ -1,0 +1,25 @@
+enum TrackSource {
+  YOUTUBE
+  SOUNDCLOUD
+}
+
+type Track {
+  id: ID! @unique
+  info: TrackInfo!
+  playlist: Playlist!
+}
+
+type TrackInfo {
+  id: ID! @unique
+  thumbnail: String
+  title: String!
+  description: String
+  url: String! @unique
+  source: TrackSource!
+}
+
+type Playlist {
+  id: ID! @unique
+  name: String! @unique
+  tracks: [Track!]!
+}
