@@ -18,6 +18,15 @@ npm start
 
 The playground will then be available at http://localhost:4466
 
+### Local Server
+
+```sh
+npm run compile;
+node built/server.index.ts
+```
+
+The server will be running on `http://localhost:4000`
+
 ### Update Local Schema
 
 After making changes to `datamodel.graphql`, run
