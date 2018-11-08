@@ -23,3 +23,15 @@ type Playlist {
   name: String! @unique
   tracks: [Track!]!
 }
+
+enum ControlAction {
+  PLAY
+  PAUSE
+  SET
+}
+
+type RemoteControl {
+  id: ID! @unique
+  song: Track!
+  action: ControlAction!
+}
