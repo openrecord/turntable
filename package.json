@@ -8,7 +8,7 @@
     "deploy:dev": "prisma deploy -e .dev.env",
     "deploy:prod": "prisma deploy -e .prod.env",
     "codegen": "gql get-schema && gql codegen",
-    "compile": "tsc"
+    "compile": "tsc --sourceMap"
   },
   "repository": {
     "type": "git",
