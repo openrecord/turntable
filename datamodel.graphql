@@ -7,6 +7,8 @@ type Track {
   id: ID! @unique
   info: TrackInfo!
   playlist: Playlist!
+  controls: [RemoteControl!]!
+    @relation(name: "ControlsBySong", onDelete: CASCADE)
 }
 
 type TrackInfo {
@@ -32,6 +34,6 @@ enum ControlAction {
 
 type RemoteControl {
   id: ID! @unique
-  song: Track!
+  song: Track! @relation(name: "ControlsBySong")
   action: ControlAction!
 }
