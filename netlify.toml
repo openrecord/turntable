@@ -1,12 +1,10 @@
 [build]
   functions = "./built/functions"
-  command = "npm run dev"
+  command = "npm run deploy"
   env = { ENDPOINT="https://us1.prisma.sh/jamesscottmcnamara/turntable/staging" }
 
 [context.production]
-  command = "npm run prod"
   env = { ENDPOINT="https://us1.prisma.sh/jamesscottmcnamara/turntable/dev" }
 
 [context.develop]
-  command = "npm run staging"
   env = { ENDPOINT="https://us1.prisma.sh/jamesscottmcnamara/turntable/staging" }
