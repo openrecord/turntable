@@ -6,6 +6,7 @@
   "scripts": {
     "start": "docker-compose up -d && npm run deploy:dev",
     "start:lambda": "netlify-lambda serve dist/functions",
+    "deploy": "[[ \"$BRANCH\" = \"develop\" ]] && npm run deploy:staging; [[ \"$BRANCH\" = \"master\" ]] && npm run deploy:prod",
     "deploy:dev": "prisma deploy -e config/development.properties",
     "deploy:staging": "prisma deploy -e config/staging.properties",
     "deploy:prod": "prisma deploy -e config/production.properties",
