@@ -6,10 +6,7 @@
   "scripts": {
     "start": "docker-compose up -d && npm run deploy:dev",
     "start:lambda": "netlify-lambda serve dist/functions",
-    "deploy": "[[ \"$BRANCH\" = \"develop\" ]] && npm run deploy:staging; [[ \"$BRANCH\" = \"master\" ]] && npm run deploy:prod",
-    "deploy:dev": "prisma deploy -e config/development.properties",
-    "deploy:staging": "prisma deploy -e config/staging.properties",
-    "deploy:prod": "prisma deploy -e config/production.properties",
+    "deploy": "npm run codegen && npm run compile && prisma deploy",
     "codegen": "gql get-schema && gql codegen",
     "compile": "rollup -c rollup.config.js"
   },
@@ -24,31 +21,22 @@
   },
   "homepage": "https://github.com/openrecord/turntable#readme",
   "dependencies": {
-    "@babel/preset-env": "^7.1.6",
-    "@babel/preset-typescript": "^7.1.0",
     "apollo-server-lambda": "^2.0.0-xrc.11",
-    "babel-loader": "^8.0.4",
-    "config": "^3.0.0",
     "graphql-binding": "^2.2.5",
     "graphql-cli": "^2.16.7",
-    "graphql-yoga": "^1.16.2",
     "husky": "^1.2.0",
     "netlify-lambda": "^1.0.3",
     "prisma": "^1.17.0",
     "prisma-binding": "^2.1.6",
-    "properties": "^1.2.1",
     "rollup": "^0.67.3",
     "rollup-plugin-graphql": "^0.1.0",
-    "rollup-plugin-replace": "^2.1.0",
     "rollup-plugin-typescript": "^1.0.0",
     "shades": "^1.13.0",
-    "typescript": "^3.0.3",
-    "webpack": "^4.26.1"
+    "typescript": "^3.0.3"
   },
   "devDependencies": {
     "@types/node": "^10.10.1",
     "graphql-tag": "^2.9.2",
-    "prettyjson": "^1.2.1",
-    "webpack-cli": "^3.1.2"
+    "prettyjson": "^1.2.1"
   }
 }

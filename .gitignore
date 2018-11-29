@@ -23,6 +23,7 @@ _old/
 built/
 generated/
 schema.graphql
+dist/
 
 # env files
 .*.env

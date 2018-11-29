@@ -6,7 +6,7 @@ import { Prisma, Query } from '../generated/prisma';
 import typeDefs from '../schema.graphql';
 
 const prisma = new Prisma({
-  endpoint: CONFIG.ENDPOINT,
+  endpoint: process.env.ENDPOINT,
 });
 
 function getQueries(queries: Query) {

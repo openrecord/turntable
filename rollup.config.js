@@ -1,7 +1,5 @@
 // rollup.config.js
-import config from 'config';
 import graphql from 'rollup-plugin-graphql';
-import replace from 'rollup-plugin-replace';
 import typescript from 'rollup-plugin-typescript';
 
 export default {
@@ -13,9 +11,6 @@ export default {
   },
   plugins: [
     graphql(),
-    replace({
-      CONFIG: JSON.stringify(config)
-    }),
     typescript(),
   ]
 }
