@@ -1,10 +1,12 @@
-import { GraphQLServer } from "graphql-yoga";
-import { Prisma, Query } from "../generated/prisma";
-import { forwardTo } from "graphql-binding";
-import { set } from "shades";
+import { ApolloServer } from 'apollo-server-lambda';
+import { forwardTo } from 'graphql-binding';
+import { set } from 'shades';
+
+import { Prisma, Query } from '../generated/prisma';
+import typeDefs from '../schema.graphql';
 
 const prisma = new Prisma({
-  endpoint: "http://localhost:4466"
+  endpoint: CONFIG.ENDPOINT,
 });
 
 function getQueries(queries: Query) {
@@ -15,8 +17,9 @@ function getQueries(queries: Query) {
   return resolvers;
 }
 
-const server = new GraphQLServer({
-  typeDefs: "./schema.graphql",
+
+const server = new ApolloServer({
+  typeDefs,
   resolvers: {
     Query: {
       ...getQueries(prisma.query),
@@ -33,4 +36,4 @@ const server = new GraphQLServer({
   context: set("db")(prisma)
 });
 
-server.start();
+exports.handler = server.createHandler();
