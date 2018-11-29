@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "docker-compose up -d && npm run deploy:dev",
+    "build": "netlify-lambda build .",
     "start:lambda": "netlify-lambda serve dist/functions",
     "deploy": "npm run codegen && npm run compile && prisma deploy",
     "codegen": "gql get-schema && gql codegen",

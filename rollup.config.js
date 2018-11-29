@@ -1,4 +1,3 @@
-// rollup.config.js
 import graphql from 'rollup-plugin-graphql';
 import typescript from 'rollup-plugin-typescript';
 

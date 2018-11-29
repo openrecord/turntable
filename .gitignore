@@ -1,6 +1,9 @@
 # package directories
 node_modules
 
+# logs
+*.log
+
 # Serverless directories
 .serverless
 
@@ -24,6 +27,3 @@ built/
 generated/
 schema.graphql
 dist/
-
-# env files
-.*.env
