@@ -1,5 +1,5 @@
 [build]
-  functions = "./built/functions"
+  functions = "./dist/functions"
   command = "npm run deploy"
   environment = { ENDPOINT = "http://localhost:4466/" }
 
