@@ -4,8 +4,9 @@
   "description": "Backend for OpenRecord",
   "main": "index.js",
   "scripts": {
-    "start": "docker-compose up -d && npm run deploy:dev",
-    "start:lambda": "netlify-lambda serve --config webpack.config.js functions",
+    "start": "docker-compose up -d && npm run create-dist && npm run serve",
+    "create-dist": "mkdir -p dist/functions && touch dist/functions/main.js",
+    "serve": "ENDPOINT='http://localhost:4466' netlify-lambda serve --config webpack.config.js functions",
     "deploy": "npm run codegen && npm run compile",
     "codegen": "gql get-schema && gql codegen",
     "compile": "netlify-lambda build --config webpack.config.js functions"
@@ -26,6 +27,7 @@
     "@babel/preset-typescript": "^7.1.0",
     "apollo-server-lambda": "^2.0.0-xrc.11",
     "babel-loader": "^8.0.4",
+    "bufferutil": "^4.0.0",
     "express": "^4.16.4",
     "graphql": "0.13",
     "graphql-binding": "^2.2.5",
@@ -37,6 +39,7 @@
     "shades": "^1.13.0",
     "tslib": "^1.9.3",
     "typescript": "^3.0.3",
+    "utf-8-validate": "^5.0.1",
     "webpack": "^4.26.1"
   },
   "devDependencies": {

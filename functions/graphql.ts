@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server-lambda';
 import { forwardTo } from 'graphql-binding';
-import { set } from 'shades';
+import { always, map, set } from 'shades';
 
 import { Prisma, Query } from '../generated/prisma';
 import typeDefs from '../schema.graphql';
@@ -11,35 +11,20 @@ const prisma = new Prisma({
   endpoint: ENDPOINT
 });
 
-function getQueries(queries: Query) {
-  const resolvers = {};
-  for (const query of Object.keys(queries)) {
-    resolvers[query] = forwardTo('db');
-  }
-  return resolvers;
-}
+const forwardToPrisma = map(always(forwardTo('db')))
 
 const server = new ApolloServer({
   typeDefs,
   resolvers: {
-    Query: {
-      ...getQueries(prisma.query),
-      ...{
-        tracks: (_, args, { db }, info) => {
-          console.log(
-            'If you run the tracks query from the top level, you will see this print out'
-          );
-          return db.query.tracks(args, info as any);
-        }
-      }
-    }
+    Query: forwardToPrisma(prisma.query),
+    Mutation: forwardToPrisma(prisma.mutation),
   },
   context: set('db')(prisma)
 });
 
 exports.handler = server.createHandler({
   cors: {
-    origin: '*',
+    origin: true,
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"]
   }
