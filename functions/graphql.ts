@@ -1,22 +1,21 @@
-import { ApolloServer } from 'apollo-server-lambda';
-import { forwardTo } from 'graphql-binding';
 import { set } from 'shades';
+import { forwardTo } from 'graphql-binding';
+import { ApolloServer } from 'apollo-server-lambda';
 
 import { Prisma, Query } from '../generated/prisma';
 import typeDefs from '../schema.graphql';
 
 const prisma = new Prisma({
-  endpoint: process.env.ENDPOINT,
+  endpoint: process.env.ENDPOINT
 });
 
 function getQueries(queries: Query) {
   const resolvers = {};
   for (const query of Object.keys(queries)) {
-    resolvers[query] = forwardTo("db");
+    resolvers[query] = forwardTo('db');
   }
   return resolvers;
 }
-
 
 const server = new ApolloServer({
   typeDefs,
@@ -26,14 +25,14 @@ const server = new ApolloServer({
       ...{
         tracks: (_, args, { db }, info) => {
           console.log(
-            "If you run the tracks query from the top level, you will see this print out"
+            'If you run the tracks query from the top level, you will see this print out'
           );
           return db.query.tracks(args, info as any);
         }
       }
     }
   },
-  context: set("db")(prisma)
+  context: set('db')(prisma)
 });
 
 exports.handler = server.createHandler();
