@@ -8,7 +8,7 @@
     "start:lambda": "netlify-lambda serve dist/functions/",
     "deploy": "npm run codegen && npm run compile",
     "codegen": "gql get-schema && gql codegen",
-    "compile": "rollup -c rollup.config.js"
+    "compile": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,10 @@
   },
   "homepage": "https://github.com/openrecord/turntable#readme",
   "dependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-typescript": "^7.1.0",
     "apollo-server-lambda": "^2.0.0-xrc.11",
+    "babel-loader": "^8.0.4",
     "express": "^4.16.4",
     "graphql": "0.13",
     "graphql-binding": "^2.2.5",
@@ -30,16 +33,15 @@
     "netlify-lambda": "^1.0.3",
     "prisma": "^1.17.0",
     "prisma-binding": "^2.1.6",
-    "rollup": "^0.67.3",
-    "rollup-plugin-graphql": "^0.1.0",
-    "rollup-plugin-typescript": "^1.0.0",
     "shades": "^1.13.0",
     "tslib": "^1.9.3",
-    "typescript": "^3.0.3"
+    "typescript": "^3.0.3",
+    "webpack": "^4.26.1"
   },
   "devDependencies": {
     "@types/node": "^10.10.1",
     "graphql-tag": "^2.9.2",
-    "prettyjson": "^1.2.1"
+    "prettyjson": "^1.2.1",
+    "webpack-cli": "^3.1.2"
   }
 }
