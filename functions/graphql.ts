@@ -5,8 +5,10 @@ import { ApolloServer, gql } from 'apollo-server-lambda';
 import { Prisma, Query } from '../generated/prisma';
 import typeDefs from '../schema.graphql';
 
+declare const ENDPOINT: string;
+
 const prisma = new Prisma({
-  endpoint: process.env.ENDPOINT
+  endpoint: ENDPOINT
 });
 
 function getQueries(queries: Query) {

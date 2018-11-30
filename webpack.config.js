@@ -1,4 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
+
+console.log('endpoint is', process.env.ENDPOINT);
 
 module.exports = {
   entry: './graphql.ts',
@@ -36,5 +39,10 @@ module.exports = {
   node: {
     module: 'empty',
     fs: 'empty'
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      ENDPOINT: JSON.stringify(process.env.ENDPOINT)
+    })
+  ]
 };
