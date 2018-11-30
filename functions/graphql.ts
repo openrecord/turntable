@@ -1,6 +1,6 @@
-import { set } from 'shades';
+import { ApolloServer } from 'apollo-server-lambda';
 import { forwardTo } from 'graphql-binding';
-import { ApolloServer, gql } from 'apollo-server-lambda';
+import { set } from 'shades';
 
 import { Prisma, Query } from '../generated/prisma';
 import typeDefs from '../schema.graphql';
@@ -39,6 +39,8 @@ const server = new ApolloServer({
 
 exports.handler = server.createHandler({
   cors: {
-    origin: '*'
+    origin: '*',
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"]
   }
 });
