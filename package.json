@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "docker-compose up -d && npm run deploy:dev",
-    "start:lambda": "netlify-lambda serve dist/functions/",
+    "start:lambda": "netlify-lambda serve --config webpack.config.js functions",
     "deploy": "npm run codegen && npm run compile",
     "codegen": "gql get-schema && gql codegen",
-    "compile": "webpack --mode production"
+    "compile": "netlify-lambda build --config webpack.config.js functions"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/openrecord/turntable#readme",
   "dependencies": {
     "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
     "@babel/preset-typescript": "^7.1.0",
     "apollo-server-lambda": "^2.0.0-xrc.11",
     "babel-loader": "^8.0.4",

@@ -1,6 +1,6 @@
 import { set } from 'shades';
 import { forwardTo } from 'graphql-binding';
-import { ApolloServer } from 'apollo-server-lambda';
+import { ApolloServer, gql } from 'apollo-server-lambda';
 
 import { Prisma, Query } from '../generated/prisma';
 import typeDefs from '../schema.graphql';

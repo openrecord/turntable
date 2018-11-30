@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './functions/graphql.ts',
+  entry: './graphql.ts',
   output: {
     filename: 'graphql.js',
     path: path.resolve(__dirname, 'dist/functions')
@@ -14,7 +14,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-typescript']
+            presets: ['@babel/preset-typescript', '@babel/preset-env']
           }
         }
       },
