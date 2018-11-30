@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "docker-compose up -d && npm run deploy:dev",
-    "build": "netlify-lambda build .",
-    "start:lambda": "netlify-lambda serve dist/functions",
+    "start:lambda": "netlify-lambda serve dist/functions/",
     "deploy": "npm run codegen && npm run compile",
     "codegen": "gql get-schema && gql codegen",
     "compile": "rollup -c rollup.config.js"
