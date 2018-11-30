@@ -36,4 +36,8 @@ const server = new ApolloServer({
   context: set("db")(prisma)
 });
 
-exports.handler = server.createHandler();
+exports.handler = server.createHandler({
+  cors: {
+    origin: '*'
+  }
+});
