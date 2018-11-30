@@ -39,7 +39,7 @@ const server = new ApolloServer({
 
 exports.handler = server.createHandler({
   cors: {
-    origin: '*',
+    origin: false,
     credentials: true
   }
 });
