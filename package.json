@@ -22,6 +22,8 @@
   "homepage": "https://github.com/openrecord/turntable#readme",
   "dependencies": {
     "apollo-server-lambda": "^2.0.0-xrc.11",
+    "express": "^4.16.4",
+    "graphql": "^14.0.2",
     "graphql-binding": "^2.2.5",
     "graphql-cli": "^2.16.7",
     "husky": "^1.2.0",
@@ -32,6 +34,7 @@
     "rollup-plugin-graphql": "^0.1.0",
     "rollup-plugin-typescript": "^1.0.0",
     "shades": "^1.13.0",
+    "tslib": "^1.9.3",
     "typescript": "^3.0.3"
   },
   "devDependencies": {
