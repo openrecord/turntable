@@ -4,7 +4,7 @@ module.exports = {
   entry: './functions/graphql.ts',
   output: {
     filename: 'graphql.js',
-    path: path.resolve(__dirname, 'functions/dist')
+    path: path.resolve(__dirname, 'dist/functions')
   },
   module: {
     rules: [
