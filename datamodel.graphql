@@ -7,6 +7,7 @@ type Track {
   id: ID! @unique
   info: TrackInfo!
   playlist: Playlist!
+  index: Int
   controls: [RemoteControl!]!
     @relation(name: "ControlsBySong", onDelete: CASCADE)
 }
@@ -36,4 +37,10 @@ type RemoteControl {
   id: ID! @unique
   song: Track! @relation(name: "ControlsBySong")
   action: ControlAction!
+}
+
+type Migration {
+  id: ID! @unique
+  index: Int @unique
+  name: String!
 }

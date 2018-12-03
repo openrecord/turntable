@@ -1,6 +1,6 @@
 projects:
   turntable:
-    schemaPath: schema.graphql
+    schemaPath: prisma.graphql
     extensions:
       endpoints:
         default: ${env:ENDPOINT}

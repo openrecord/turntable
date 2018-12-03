@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "docker-compose up -d && npm run create-dist && npm run serve",
-    "create-dist": "mkdir -p dist/functions && touch dist/functions/main.js",
-    "serve": "ENDPOINT='http://localhost:4466' netlify-lambda serve --config webpack.config.js functions",
-    "deploy": "npm run codegen && npm run compile",
+    "create-dist": "mkdir -p dist/functions && touch dist/functions/main.js && touch prisma.yml",
+    "serve": "NODE_ENV=development ENDPOINT='http://localhost:4466' netlify-lambda serve --config webpack.config.js functions",
+    "serve:debug": "NODE_ENV=development ENDPOINT='http://localhost:4466' npx --node-arg=--inspect-brk netlify-lambda serve --config webpack.config.js functions",
+    "deploy": "npm run create-dist && npm run codegen && npm run compile",
     "codegen": "gql get-schema && gql codegen",
-    "compile": "netlify-lambda build --config webpack.config.js functions"
+    "compile": "netlify-lambda build --config webpack.config.js functions",
+    "makemigrations": "tsc",
+    "migrate": "node built/migrations/index.js"
   },
   "repository": {
     "type": "git",
@@ -32,7 +35,9 @@
     "graphql": "0.13",
     "graphql-binding": "^2.2.5",
     "graphql-cli": "^2.16.7",
+    "graphql-import": "^0.7.1",
     "husky": "^1.2.0",
+    "mz": "^2.7.0",
     "netlify-lambda": "^1.0.3",
     "prisma": "^1.17.0",
     "prisma-binding": "^2.1.6",

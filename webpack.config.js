@@ -4,7 +4,8 @@ const webpack = require('webpack');
 console.log('endpoint is', process.env.ENDPOINT);
 
 module.exports = {
-  entry: './graphql.ts',
+  devtool: 'inline-source-map',
+  entry: ['babel-polyfill', './graphql.ts'],
   output: {
     filename: 'graphql.js',
     path: path.resolve(__dirname, 'dist/functions')
@@ -20,11 +21,6 @@ module.exports = {
             presets: ['@babel/preset-typescript', '@babel/preset-env']
           }
         }
-      },
-      {
-        test: /\.(graphql|gql)$/,
-        exclude: /node_modules/,
-        loader: 'graphql-tag/loader'
       },
       {
         test: /\.mjs$/,
@@ -44,5 +40,8 @@ module.exports = {
     new webpack.DefinePlugin({
       ENDPOINT: JSON.stringify(process.env.ENDPOINT)
     })
-  ]
+  ],
+  optimization: {
+    minimize: false
+  }
 };
