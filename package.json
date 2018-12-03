@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "docker-compose up -d && npm run create-dist && npm run serve",
-    "create-dist": "mkdir -p dist/functions && touch dist/functions/main.js && touch prisma.graphql",
+    "create-dist": "mkdir -p dist/functions && touch dist/functions/main.js",
     "serve": "NODE_ENV=development ENDPOINT='http://localhost:4466' netlify-lambda serve --config webpack.config.js functions",
     "serve:debug": "NODE_ENV=development ENDPOINT='http://localhost:4466' npx --node-arg=--inspect-brk netlify-lambda serve --config webpack.config.js functions",
-    "deploy": "npm run create-dist && npm run codegen && npm run compile",
+    "deploy": "npm run codegen && npm run compile",
     "codegen": "gql get-schema && gql codegen",
     "compile": "netlify-lambda build --config webpack.config.js functions",
     "makemigrations": "tsc",
